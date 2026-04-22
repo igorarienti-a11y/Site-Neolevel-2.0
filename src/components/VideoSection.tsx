@@ -29,14 +29,17 @@ export function VideoSection() {
             className="text-xs font-semibold tracking-[0.2em] uppercase"
             style={{ color: "#06F9FA", fontFamily: "Sora, sans-serif" }}
           >
-            Conheça o Neolevel
+            Estrutura & Ambiente
           </span>
           <h2
             className="text-3xl md:text-4xl font-bold text-white mt-3"
             style={{ fontFamily: "Sora, sans-serif" }}
           >
-            Veja o que nos move
+            Conheça nossa infraestrutura
           </h2>
+          <p className="text-[#D9D9D9]/60 text-sm mt-3">
+            Salas, equipamentos e um ambiente criado para elevar o nível de quem quer crescer de verdade.
+          </p>
         </motion.div>
 
         <motion.div

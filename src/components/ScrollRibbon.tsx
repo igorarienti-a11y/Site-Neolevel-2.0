@@ -15,8 +15,11 @@ export function ScrollRibbon() {
 
     const build = () => {
       const W = window.innerWidth;
-      const H = document.documentElement.scrollHeight;
+      const footerEl = document.querySelector("footer");
+      const footerH = footerEl ? footerEl.offsetHeight : 0;
+      const H = document.documentElement.scrollHeight - footerH;
       svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+      svg.style.height = `${H}px`;
 
       const seg = H / 9;
       const a = W * 0.82;
@@ -41,7 +44,10 @@ export function ScrollRibbon() {
       p1.style.strokeDashoffset = `${len1}`;
 
       const onScroll = () => {
-        const max = document.documentElement.scrollHeight - window.innerHeight;
+        const totalH = document.documentElement.scrollHeight;
+        const footerElScroll = document.querySelector("footer");
+        const footerHScroll = footerElScroll ? footerElScroll.offsetHeight : 0;
+        const max = totalH - footerHScroll - window.innerHeight;
         const progress = max > 0 ? Math.min(1, window.scrollY / max) : 0;
         p1.style.strokeDashoffset = `${len1 * (1 - progress)}`;
       };

@@ -64,7 +64,7 @@ export function InscricaoSection() {
             className="text-3xl md:text-4xl font-bold text-white mt-3"
             style={{ fontFamily: "Sora, sans-serif" }}
           >
-            Candidate-se agora
+            Inscreva-se agora
           </h2>
           <p className="text-[#D9D9D9]/60 text-sm mt-3 leading-relaxed">
             Vagas limitadas. Preencha o formulário e nossa equipe entrará em contato.
@@ -93,7 +93,7 @@ export function InscricaoSection() {
                 </svg>
               </div>
               <h3 className="text-white text-xl font-bold mb-2" style={{ fontFamily: "Sora, sans-serif" }}>
-                Candidatura enviada!
+                Inscrição enviada!
               </h3>
               <p className="text-[#D9D9D9]/60 text-sm">
                 Nossa equipe entrará em contato em breve. Fique atento ao seu e-mail.
@@ -209,7 +209,7 @@ export function InscricaoSection() {
                   <Loader2 size={16} className="animate-spin" />
                 ) : (
                   <>
-                    Enviar candidatura
+                    Enviar inscrição
                     <ArrowRight size={16} />
                   </>
                 )}

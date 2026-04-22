@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useInView, type Variants } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 import { Tilt3D } from "./Tilt3D";
 
 const mentores = [
@@ -134,6 +135,30 @@ export function MentoresSection() {
             ))}
           </motion.div>
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.5 }}
+          className="flex justify-center mt-12"
+        >
+          <a
+            href="#processo-seletivo"
+            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-bold text-sm transition-all duration-200 hover:-translate-y-0.5"
+            style={{ background: "#06F9FA", color: "#12203A" }}
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLAnchorElement).style.boxShadow =
+                "0 0 30px rgba(6,249,250,0.35), 0 8px 32px rgba(6,249,250,0.15)";
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLAnchorElement).style.boxShadow = "none";
+            }}
+          >
+            Aprender com esses mentores
+            <ArrowRight size={16} />
+          </a>
+        </motion.div>
+
       </div>
     </section>
   );
