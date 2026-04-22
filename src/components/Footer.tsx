@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 function InstagramIcon({ size = 15 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -50,12 +52,13 @@ export function Footer() {
       <div className="max-w-6xl mx-auto px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
           <div className="md:col-span-2">
-            <span
-              className="text-2xl font-bold tracking-widest"
-              style={{ fontFamily: "Sora, sans-serif", color: "#FFFFFF" }}
-            >
-              NEO<span style={{ color: "#06F9FA" }}>LEVEL</span>
-            </span>
+            <Image
+              src="/neolevel-logo.png"
+              alt="Neolevel"
+              width={140}
+              height={36}
+              style={{ objectFit: "contain" }}
+            />
             <p className="text-[#D9D9D9]/60 text-sm mt-4 leading-relaxed max-w-xs">
               Business School exclusiva para jovens empreendedores e sucessores.
               Formação hands-on com mentores que construíram grandes ecossistemas.

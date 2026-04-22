@@ -139,7 +139,7 @@ function NetworkScene() {
       const mat = new THREE.LineBasicMaterial({
         color: "#06F9FA",
         transparent: true,
-        opacity: 0.14,
+        opacity: 0.08,
       });
       return { line: new THREE.Line(geo, mat), mat };
     });
@@ -157,7 +157,7 @@ function NetworkScene() {
     edgeMatsRef.current.forEach((mat, i) => {
       if (!mat) return;
       const phase = edges[i]?.phase ?? 0;
-      mat.opacity = 0.1 + Math.sin(t * 0.9 + phase) * 0.06 + 0.04;
+      mat.opacity = 0.08 + Math.sin(t * 0.9 + phase) * 0.02;
     });
     nodeMeshesRef.current.forEach((mesh, i) => {
       if (!mesh) return;

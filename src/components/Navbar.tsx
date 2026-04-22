@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 const links = [
   { label: "Mentores", href: "#mentores" },
@@ -35,13 +36,15 @@ export function Navbar() {
       )}
     >
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="#" className="flex items-center gap-2">
-          <span
-            className="font-display text-xl font-bold tracking-widest text-white"
-            style={{ fontFamily: "Sora, sans-serif" }}
-          >
-            NEO<span style={{ color: "#06F9FA" }}>LEVEL</span>
-          </span>
+        <a href="#" className="flex items-center">
+          <Image
+            src="/neolevel-logo.png"
+            alt="Neolevel"
+            width={140}
+            height={36}
+            style={{ objectFit: "contain" }}
+            priority
+          />
         </a>
 
         <nav className="hidden md:flex items-center gap-8">

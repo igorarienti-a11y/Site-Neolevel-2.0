@@ -6,6 +6,10 @@ export const metadata: Metadata = {
   title: "Neolevel | Business School para Jovens empreendedores e sucessores",
   description:
     "Formação de gestão empresarial para jovens líderes de 17 a 30 anos. Mentoria com grandes empresários, networking exclusivo e metodologia hands-on na estrutura da FIESC. Inscreva-se!",
+  icons: {
+    icon: "/neolevel-favicon.png",
+    apple: "/neolevel-favicon.png",
+  },
   openGraph: {
     title: "Neolevel | Business School para Jovens empreendedores e sucessores",
     description:
