@@ -45,19 +45,14 @@ body {
 }
 
 .card-hover {
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .card-hover:hover {
   border-color: rgba(6, 249, 250, 0.4);
   box-shadow: 0 0 30px rgba(6, 249, 250, 0.08), 0 20px 60px rgba(0, 0, 0, 0.4);
+  transform: translateY(-4px);
 }
-
-/* 3D perspective context */
-.perspective-sm { perspective: 600px; }
-.perspective-md { perspective: 1000px; }
-.perspective-lg { perspective: 1400px; }
-.preserve-3d { transform-style: preserve-3d; }
 
 ::-webkit-scrollbar {
   width: 6px;

@@ -9,23 +9,25 @@ import { ExclusividadeSection } from "@/components/ExclusividadeSection";
 import { FaqSection } from "@/components/FaqSection";
 import { ProvasSocialSection } from "@/components/ProvasSocialSection";
 import { Footer } from "@/components/Footer";
-import { ScrollRibbon } from "@/components/ScrollRibbon";
+import { NetworkCanvas } from "@/components/NetworkCanvas";
 
 export default function Home() {
   return (
-    <main style={{ position: "relative" }}>
-      <ScrollRibbon />
-      <Navbar />
-      <HeroSection />
-      <DiferenciaisSection />
-      <VideoSection />
-      <ParaQuemSection />
-      <MentoresSection />
-      <EstruturaSection />
-      <ExclusividadeSection />
-      <FaqSection />
-      <ProvasSocialSection />
-      <Footer />
-    </main>
+    <>
+      <NetworkCanvas />
+      <main style={{ position: "relative", zIndex: 1 }}>
+        <Navbar />
+        <HeroSection />
+        <DiferenciaisSection />
+        <VideoSection />
+        <ParaQuemSection />
+        <MentoresSection />
+        <EstruturaSection />
+        <ExclusividadeSection />
+        <FaqSection />
+        <ProvasSocialSection />
+        <Footer />
+      </main>
+    </>
   );
 }

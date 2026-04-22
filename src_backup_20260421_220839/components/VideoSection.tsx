@@ -1,0 +1,100 @@
+"use client";
+
+import { useRef, useState } from "react";
+import { motion, useInView } from "framer-motion";
+import { Play } from "lucide-react";
+
+export function VideoSection() {
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, amount: 0.2 });
+  const [playing, setPlaying] = useState(false);
+
+  return (
+    <section className="py-24 px-6 relative overflow-hidden" style={{ background: "rgba(30,30,30,0.85)" }}>
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse 40% 50% at 50% 50%, rgba(6,249,250,0.04), transparent 70%)",
+        }}
+      />
+
+      <div className="max-w-4xl mx-auto" ref={ref}>
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-10"
+        >
+          <span
+            className="text-xs font-semibold tracking-[0.2em] uppercase"
+            style={{ color: "#06F9FA", fontFamily: "Sora, sans-serif" }}
+          >
+            Conheça o Neolevel
+          </span>
+          <h2
+            className="text-3xl md:text-4xl font-bold text-white mt-3"
+            style={{ fontFamily: "Sora, sans-serif" }}
+          >
+            Veja o que nos move
+          </h2>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.97 }}
+          animate={isInView ? { opacity: 1, scale: 1 } : {}}
+          transition={{ duration: 0.7, delay: 0.2 }}
+          className="relative rounded-2xl overflow-hidden"
+          style={{
+            border: "1px solid rgba(6,249,250,0.12)",
+            boxShadow: "0 0 80px rgba(6,249,250,0.05), 0 40px 80px rgba(0,0,0,0.5)",
+          }}
+        >
+          {!playing ? (
+            <div
+              className="relative aspect-video bg-[#12203A] cursor-pointer group"
+              onClick={() => setPlaying(true)}
+            >
+              <img
+                src={`https://img.youtube.com/vi/KtajxNLtPXQ/maxresdefault.jpg`}
+                alt="Neolevel Business School"
+                className="w-full h-full object-cover opacity-60 group-hover:opacity-70 transition-opacity duration-300"
+              />
+
+              <div className="absolute inset-0 flex items-center justify-center">
+                <motion.div
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="w-20 h-20 rounded-full flex items-center justify-center"
+                  style={{
+                    background: "rgba(6,249,250,0.9)",
+                    boxShadow: "0 0 40px rgba(6,249,250,0.4)",
+                  }}
+                >
+                  <Play size={28} fill="#12203A" style={{ color: "#12203A", marginLeft: 3 }} />
+                </motion.div>
+              </div>
+
+              <div
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  background:
+                    "radial-gradient(ellipse 60% 60% at 50% 50%, rgba(6,249,250,0.06), transparent 70%)",
+                }}
+              />
+            </div>
+          ) : (
+            <div className="aspect-video">
+              <iframe
+                src="https://www.youtube.com/embed/KtajxNLtPXQ?autoplay=1"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="w-full h-full"
+              />
+            </div>
+          )}
+        </motion.div>
+      </div>
+    </section>
+  );
+}
