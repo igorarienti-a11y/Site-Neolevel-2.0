@@ -10,6 +10,7 @@ import { FaqSection } from "@/components/FaqSection";
 import { ProvasSocialSection } from "@/components/ProvasSocialSection";
 import { Footer } from "@/components/Footer";
 import { ScrollRibbon } from "@/components/ScrollRibbon";
+import { InscricaoSection } from "@/components/InscricaoSection";
 
 export default function Home() {
   return (
@@ -25,6 +26,7 @@ export default function Home() {
       <ExclusividadeSection />
       <FaqSection />
       <ProvasSocialSection />
+      <InscricaoSection />
       <Footer />
     </main>
   );
