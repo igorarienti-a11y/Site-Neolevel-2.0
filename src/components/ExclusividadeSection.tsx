@@ -36,7 +36,7 @@ export function ExclusividadeSection() {
       className="py-20 md:py-28 px-4 sm:px-6 relative overflow-hidden"
       style={{ background: "rgba(30,30,30,0.85)" }}
     >
-      <div className="absolute inset-0 grid-lines opacity-20" />
+      <div className="absolute inset-0 grid-lines opacity-20 pointer-events-none" />
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
