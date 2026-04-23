@@ -60,7 +60,7 @@ export function Navbar() {
         </nav>
 
         <a
-          href="#processo-seletivo"
+          href="#inscricao"
           className="hidden md:inline-flex items-center px-5 py-2 rounded-lg border border-[#06F9FA] text-[#06F9FA] text-sm font-semibold hover:bg-[#06F9FA] hover:text-[#12203A] transition-all duration-200"
         >
           Inscreva-se
@@ -95,7 +95,7 @@ export function Navbar() {
                 </a>
               ))}
               <a
-                href="#processo-seletivo"
+                href="#inscricao"
                 className="inline-flex justify-center items-center px-5 py-2.5 rounded-lg bg-[#06F9FA] text-[#12203A] text-sm font-bold"
                 onClick={() => setMenuOpen(false)}
               >

@@ -32,7 +32,7 @@ export function ExclusividadeSection() {
 
   return (
     <section
-      id="processo-seletivo"
+      id="exclusividade"
       className="py-20 md:py-28 px-4 sm:px-6 relative overflow-hidden"
       style={{ background: "rgba(30,30,30,0.85)" }}
     >
@@ -174,7 +174,7 @@ export function ExclusividadeSection() {
           className="mt-10 flex justify-center"
         >
           <a
-            href="#processo-seletivo"
+            href="#inscricao"
             className="inline-flex items-center gap-2 px-10 py-4 rounded-lg font-bold text-lg transition-all duration-200 hover:-translate-y-0.5"
             style={{ background: "#06F9FA", color: "#12203A" }}
             onMouseEnter={(e) => {

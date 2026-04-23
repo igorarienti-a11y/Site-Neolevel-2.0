@@ -110,7 +110,7 @@ export function ParaQuemSection() {
                   <p className="text-[#D9D9D9]/75 leading-relaxed mb-8">{p.body}</p>
 
                   <a
-                    href="#processo-seletivo"
+                    href="#inscricao"
                     className="inline-flex items-center gap-2 text-sm font-semibold transition-all duration-200 hover:gap-3"
                     style={{ color: "#06F9FA" }}
                   >

@@ -205,7 +205,7 @@ export function EstruturaSection() {
           className="flex justify-center mt-12"
         >
           <a
-            href="#processo-seletivo"
+            href="#inscricao"
             className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-bold text-sm transition-all duration-200 hover:-translate-y-0.5"
             style={{ background: "#06F9FA", color: "#12203A" }}
             onMouseEnter={(e) => {

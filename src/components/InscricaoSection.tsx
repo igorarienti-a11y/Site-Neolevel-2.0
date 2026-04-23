@@ -35,7 +35,7 @@ export function InscricaoSection() {
 
   return (
     <section
-      id="processo-seletivo"
+      id="inscricao"
       className="py-24 px-6 relative overflow-hidden"
       style={{ background: "rgba(14,26,43,0.95)" }}
     >
