@@ -203,13 +203,13 @@ export function HeroOrb() {
     <div
       style={{
         position: "absolute",
-        right: "-5%",
+        right: "0%",
         top: 0,
-        width: "50%",
+        width: "58%",
         height: "100%",
         pointerEvents: "none",
-        maskImage: "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.3) 22%, black 44%)",
-        WebkitMaskImage: "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.3) 22%, black 44%)",
+        maskImage: "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.3) 15%, black 35%)",
+        WebkitMaskImage: "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.3) 15%, black 35%)",
       }}
     >
       <Canvas
