@@ -118,7 +118,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 1.9 }}
-            className="flex items-center justify-center gap-10 sm:gap-16 flex-wrap mt-8 w-full"
+            className="flex items-center justify-start gap-10 sm:gap-16 flex-wrap mt-8 w-full"
           >
             {[
               { value: "17–30", label: "anos" },
