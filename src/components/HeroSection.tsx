@@ -114,38 +114,38 @@ export function HeroSection() {
             </a>
           </motion.div>
 
-        </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 1.9 }}
-          className="flex items-center justify-center gap-10 sm:gap-16 flex-wrap mt-14 w-full"
-        >
-          {[
-            { value: "17–30", label: "anos" },
-            { value: "20", label: "vagas por turma" },
-            { value: "960h", label: "por ano" },
-          ].map((stat, i) => (
-            <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 2.0 + i * 0.1 }}
-              className="flex flex-col items-center text-center"
-            >
-              <div
-                className="text-2xl sm:text-3xl font-bold"
-                style={{ fontFamily: "Sora, sans-serif", color: "#06F9FA" }}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 1.9 }}
+            className="flex items-center justify-center gap-10 sm:gap-16 flex-wrap mt-8 w-full"
+          >
+            {[
+              { value: "17–30", label: "anos" },
+              { value: "20", label: "vagas por turma" },
+              { value: "960h", label: "por ano" },
+            ].map((stat, i) => (
+              <motion.div
+                key={stat.label}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 2.0 + i * 0.1 }}
+                className="flex flex-col items-center text-center"
               >
-                {stat.value}
-              </div>
-              <div className="text-[10px] sm:text-xs text-[#D9D9D9]/55 uppercase tracking-widest mt-1">
-                {stat.label}
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
+                <div
+                  className="text-2xl sm:text-3xl font-bold"
+                  style={{ fontFamily: "Sora, sans-serif", color: "#06F9FA" }}
+                >
+                  {stat.value}
+                </div>
+                <div className="text-[10px] sm:text-xs text-[#D9D9D9]/55 uppercase tracking-widest mt-1">
+                  {stat.label}
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+
+        </div>
 
       </div>
 
