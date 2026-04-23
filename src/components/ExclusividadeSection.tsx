@@ -174,7 +174,7 @@ export function ExclusividadeSection() {
           className="mt-10 flex justify-center"
         >
           <a
-            href="mailto:contato@neolevel.com.br"
+            href="#processo-seletivo"
             className="inline-flex items-center gap-2 px-10 py-4 rounded-lg font-bold text-lg transition-all duration-200 hover:-translate-y-0.5"
             style={{ background: "#06F9FA", color: "#12203A" }}
             onMouseEnter={(e) => {
