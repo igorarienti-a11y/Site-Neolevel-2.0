@@ -150,9 +150,9 @@ function NetworkScene() {
   useFrame((state) => {
     const t = state.clock.elapsedTime;
     if (groupRef.current) {
-      groupRef.current.rotation.x = t * 0.00213;
-      groupRef.current.rotation.y = t * 0.00388;
-      groupRef.current.rotation.z = t * 0.00138;
+      groupRef.current.rotation.x = t * 0.004;
+      groupRef.current.rotation.y = t * 0.007;
+      groupRef.current.rotation.z = t * 0.003;
     }
     edgeMatsRef.current.forEach((mat, i) => {
       if (!mat) return;
