@@ -28,10 +28,15 @@ export function NetworkCanvas() {
 
   useEffect(() => {
     const canvas = ref.current!;
-    const ctx = canvas.getContext("2d")!;
 
     let W = window.innerWidth;
     let H = window.innerHeight;
+
+    // Skip all animation on mobile - native scroll handles it
+    if (W < 768) return;
+
+    const ctx = canvas.getContext("2d")!;
+
     let raf = 0;
     let scrollProgress = 0;
     let smoothScroll = 0;
@@ -326,11 +331,6 @@ export function NetworkCanvas() {
       ctx.restore();
     }
 
-    const isMobile = window.innerWidth < 640;
-    if (isMobile) {
-      return () => {};
-    }
-
     draw();
 
     function onScroll() {
@@ -369,6 +369,7 @@ export function NetworkCanvas() {
   return (
     <canvas
       ref={ref}
+      className="hidden md:block"
       style={{
         position: "fixed",
         inset: 0,

@@ -11,6 +11,9 @@ export function ScrollRibbon() {
     const p1 = path1Ref.current;
     if (!svg || !p1) return;
 
+    // Too heavy on mobile (full-page SVG + glow filter)
+    if (window.innerWidth < 768) return;
+
     let rafId = 0;
 
     const build = () => {
@@ -87,6 +90,7 @@ export function ScrollRibbon() {
   return (
     <svg
       ref={svgRef}
+      className="hidden md:block"
       style={{
         position: "absolute",
         top: 0,

@@ -12,8 +12,18 @@ interface Tilt3DProps {
 export function Tilt3D({ children, className, style, intensity = 10 }: Tilt3DProps) {
   const ref = useRef<HTMLDivElement>(null);
 
+  const isTouch = () =>
+    typeof window !== "undefined" && window.matchMedia("(hover: none)").matches;
+
+  const onEnter = () => {
+    if (isTouch()) return;
+    const el = ref.current;
+    if (!el) return;
+    el.style.willChange = "transform";
+  };
+
   const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (window.matchMedia("(hover: none)").matches) return;
+    if (isTouch()) return;
     const el = ref.current;
     if (!el) return;
     const rect = el.getBoundingClientRect();
@@ -27,14 +37,16 @@ export function Tilt3D({ children, className, style, intensity = 10 }: Tilt3DPro
     const el = ref.current;
     if (!el) return;
     el.style.transition = "transform 0.55s cubic-bezier(0.23, 1, 0.32, 1)";
-    el.style.transform = "perspective(900px) rotateX(0deg) rotateY(0deg) translateZ(0px)";
+    el.style.transform = "";
+    el.style.willChange = "auto";
   };
 
   return (
     <div
       ref={ref}
       className={className}
-      style={{ ...style, transformStyle: "preserve-3d", willChange: "transform" }}
+      style={style}
+      onMouseEnter={onEnter}
       onMouseMove={onMove}
       onMouseLeave={onLeave}
     >

@@ -15,6 +15,7 @@
 
 * {
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
 html {
@@ -27,6 +28,17 @@ body {
   font-family: "Inter", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overscroll-behavior-y: none;
+}
+
+/* Prevent 300ms tap delay on all interactive elements */
+a,
+button,
+[role="button"],
+input,
+select,
+textarea {
+  touch-action: manipulation;
 }
 
 .grid-lines {
@@ -58,6 +70,32 @@ body {
 .perspective-md { perspective: 1000px; }
 .perspective-lg { perspective: 1400px; }
 .preserve-3d { transform-style: preserve-3d; }
+
+/* Mobile: strip expensive effects */
+@media (max-width: 767px) {
+  .neon-glow {
+    box-shadow: 0 0 12px rgba(6, 249, 250, 0.2);
+  }
+
+  .neon-text-glow {
+    text-shadow: 0 0 12px rgba(6, 249, 250, 0.35);
+  }
+
+  .grid-lines {
+    background-size: 48px 48px;
+  }
+}
+
+/* Honor reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
 
 ::-webkit-scrollbar {
   width: 6px;
