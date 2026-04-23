@@ -1,17 +1,18 @@
 "use client";
 
+import Image from "next/image";
 import { useRef } from "react";
 import { motion, useInView, type Variants } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Tilt3D } from "./Tilt3D";
 
 const mentores = [
-  { name: "Thiago Quadros", role: "CEO TOTVS", tema: "Inteligência Artificial aplicada ao crescimento", initials: "TQ" },
-  { name: "Claudio Grando", role: "CEO AUDACES", tema: "Gestão e visão de mercado global", initials: "CG" },
-  { name: "Luiz Fernando Marca", role: "Empreendedor", tema: "Estruturação para crescimento e sucessão familiar", initials: "LF" },
-  { name: "Patricia Santos", role: "Especialista Corporativa", tema: "Excelência e mentoria corporativa padrão Disney", initials: "PS" },
-  { name: "Norberto Dias", role: "Especialista M&A", tema: "Especialista em M&A e resultados sênior", initials: "ND" },
-  { name: "Luiz Henrique Herling", role: "Estrategista Financeiro", tema: "Estratégia financeira e tomada de decisão", initials: "LH" },
+  { name: "Thiago Quadros", role: "CEO TOTVS", tema: "Inteligência Artificial aplicada ao crescimento", photo: "/mentor-thiago.jpg" },
+  { name: "Claudio Grando", role: "CEO AUDACES", tema: "Gestão e visão de mercado global", photo: "/mentor-claudio.png" },
+  { name: "Luiz Fernando Marca", role: "Empreendedor", tema: "Estruturação para crescimento e sucessão familiar", photo: "/mentor-luiz-fernando.jpg" },
+  { name: "Patricia Santos", role: "Especialista Corporativa", tema: "Excelência e mentoria corporativa padrão Disney", photo: "/mentor-patricia.jpg" },
+  { name: "Norberto Dias", role: "Especialista M&A", tema: "Especialista em M&A e resultados sênior", photo: "/mentor-norberto.png" },
+  { name: "Luiz Henrique Herling", role: "Estrategista Financeiro", tema: "Estratégia financeira e tomada de decisão", photo: "/mentor-luiz-henrique.jpg" },
 ];
 
 const containerVariants: Variants = {
@@ -105,15 +106,16 @@ export function MentoresSection() {
                 >
                   <div className="flex items-center gap-4 mb-4">
                     <div
-                      className="w-12 h-12 rounded-full flex items-center justify-center text-sm font-bold shrink-0"
-                      style={{
-                        background: "linear-gradient(135deg, rgba(6,249,250,0.2), rgba(18,32,58,0.8))",
-                        border: "1px solid rgba(6,249,250,0.2)",
-                        color: "#06F9FA",
-                        fontFamily: "Sora, sans-serif",
-                      }}
+                      className="w-12 h-12 rounded-full overflow-hidden shrink-0"
+                      style={{ border: "1px solid rgba(6,249,250,0.2)" }}
                     >
-                      {mentor.initials}
+                      <Image
+                        src={mentor.photo}
+                        alt={mentor.name}
+                        width={48}
+                        height={48}
+                        className="w-full h-full object-cover"
+                      />
                     </div>
                     <div>
                       <div
