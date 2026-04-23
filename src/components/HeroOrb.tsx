@@ -203,18 +203,18 @@ export function HeroOrb() {
     <div
       style={{
         position: "absolute",
-        left: 0,
+        right: 0,
         top: 0,
-        width: "100%",
+        width: "60%",
         height: "100%",
         pointerEvents: "none",
-        maskImage: "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.15) 35%, black 55%)",
-        WebkitMaskImage: "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.15) 35%, black 55%)",
+        maskImage: "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.3) 20%, black 40%)",
+        WebkitMaskImage: "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.3) 20%, black 40%)",
       }}
     >
       <Canvas
         style={{ width: "100%", height: "100%" }}
-        camera={{ position: [1.5, 0, 14], fov: 70 }}
+        camera={{ position: [0, 0, 14], fov: 65 }}
         gl={{ alpha: true, antialias: true }}
       >
         <NetworkScene />
