@@ -161,6 +161,8 @@ function NetworkScene() {
     });
     nodeMeshesRef.current.forEach((mesh, i) => {
       if (!mesh) return;
+      // Billboard: always face the camera regardless of group rotation
+      mesh.lookAt(state.camera.position);
       const phase = nodes[i]?.phase ?? 0;
       const base = nodes[i]?.scale ?? 0.4;
       mesh.scale.setScalar(base * (1 + Math.sin(t * 1.0 + phase) * 0.035));
