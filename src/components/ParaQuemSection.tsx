@@ -13,7 +13,7 @@ const personas = [
     body: "Prepare-se para honrar e expandir o patrimônio familiar com visão estratégica e governança moderna. Herança vem com expectativas — mas não vem com manual de instruções. O Neolevel entrega o método.",
     cta: "Quero preparar meu legado",
     delay: 0,
-    rotateY: -6,
+    
   },
   {
     icon: Lightbulb,
@@ -22,7 +22,7 @@ const personas = [
     body: "Transforme ideias em empresas lucrativas com método. Valide seu modelo de negócio, conquiste o mercado e aprenda com quem já construiu ecossistemas empresariais de sucesso.",
     cta: "Quero construir meu negócio",
     delay: 0.15,
-    rotateY: 6,
+    
   },
 ];
 
@@ -44,10 +44,10 @@ export function ParaQuemSection() {
 
       <div className="max-w-6xl mx-auto" ref={ref}>
         <motion.div
-          initial={{ opacity: 0, y: 28, rotateX: 20 }}
+          initial={{ opacity: 0, y: 28 }}
           animate={isInView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
           transition={{ duration: 0.65 }}
-          style={{ perspective: "800px" } as React.CSSProperties}
+          
           className="text-center mb-16"
         >
           <span
@@ -68,14 +68,14 @@ export function ParaQuemSection() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6" style={{ perspective: "1200px" }}>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {personas.map((p) => {
             const Icon = p.icon;
             return (
               <motion.div
                 key={p.title}
-                initial={{ opacity: 0, y: 48, rotateX: 18, rotateY: p.rotateY }}
-                animate={isInView ? { opacity: 1, y: 0, rotateX: 0, rotateY: 0 } : {}}
+                initial={{ opacity: 0, y: 48 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.75, delay: p.delay, ease: [0.22, 1, 0.36, 1] }}
               >
                 <Tilt3D

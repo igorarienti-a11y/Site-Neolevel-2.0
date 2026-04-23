@@ -62,11 +62,11 @@ const containerVariants: Variants = {
 };
 
 const cardVariants: Variants = {
-  hidden: { opacity: 0, y: 48, rotateX: 18, scale: 0.96 },
+  hidden: { opacity: 0, y: 32 },
   visible: {
     opacity: 1,
     y: 0,
-    rotateX: 0,
+    
     scale: 1,
     transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
   },
@@ -93,10 +93,10 @@ export function DiferenciaisSection() {
       <div className="max-w-6xl mx-auto">
         <motion.div
           ref={ref}
-          initial={{ opacity: 0, y: 24, rotateX: 20 }}
-          animate={isInView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
+          initial={{ opacity: 0, y: 24 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          style={{ perspective: 600 }}
+          
           className="mb-4"
         >
           <span
@@ -108,11 +108,11 @@ export function DiferenciaisSection() {
         </motion.div>
 
         <motion.h2
-          initial={{ opacity: 0, y: 28, rotateX: 15 }}
-          animate={isInView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
+          initial={{ opacity: 0, y: 28 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.65, delay: 0.1 }}
           className="text-4xl md:text-5xl font-bold text-white mb-5"
-          style={{ fontFamily: "Sora, sans-serif", perspective: "800px" } as React.CSSProperties}
+          style={{ fontFamily: "Sora, sans-serif" } as React.CSSProperties}
         >
           Formação de Elite
         </motion.h2>
@@ -128,7 +128,7 @@ export function DiferenciaisSection() {
           escala e liderança.
         </motion.p>
 
-        <div style={{ perspective: "1400px" }}>
+        <div >
           <motion.div
             variants={containerVariants}
             initial="hidden"

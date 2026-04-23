@@ -48,9 +48,9 @@ export function ExclusividadeSection() {
       <div className="max-w-6xl mx-auto" ref={ref}>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center mb-16 md:mb-20" style={{ perspective: "1200px" }}>
           <motion.div
-            initial={{ opacity: 0, x: -48, rotateY: -10 }}
-            animate={isInView ? { opacity: 1, x: 0, rotateY: 0 } : {}}
-            transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, ease: "easeOut" }}
           >
             <span
               className="text-xs font-semibold tracking-[0.2em] uppercase"
@@ -77,13 +77,13 @@ export function ExclusividadeSection() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, scale: 0.75, rotateY: 10 }}
-            animate={isInView ? { opacity: 1, scale: 1, rotateY: 0 } : {}}
-            transition={{ duration: 0.85, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
             className="flex flex-col items-center justify-center"
           >
             <div
-              className="text-[7rem] sm:text-[9rem] md:text-[12rem] font-bold leading-none neon-text-glow"
+              className="text-[5rem] sm:text-[7rem] md:text-[10rem] font-bold leading-none neon-text-glow"
               style={{
                 fontFamily: "Sora, sans-serif",
                 color: "#06F9FA",

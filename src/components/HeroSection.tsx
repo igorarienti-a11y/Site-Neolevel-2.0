@@ -27,7 +27,7 @@ export function HeroSection() {
         }}
       />
 
-      <HeroOrb />
+      <div className="hidden md:block"><HeroOrb /></div>
 
       <div
         className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none"
@@ -38,9 +38,9 @@ export function HeroSection() {
         <div className="flex flex-col items-start gap-4 md:gap-5 w-full md:max-w-[52%]">
 
           <motion.div
-            initial={{ opacity: 0, y: 20, rotateX: 30 }}
-            animate={{ opacity: 1, y: 0, rotateX: 0 }}
-            transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
             className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-[#06F9FA]/25 bg-[#06F9FA]/5"
           >
             <span className="w-1.5 h-1.5 rounded-full bg-[#06F9FA] animate-pulse shrink-0" />
@@ -52,26 +52,26 @@ export function HeroSection() {
             </span>
           </motion.div>
 
-          <h1
-            className="text-[2.2rem] sm:text-[2.8rem] md:text-[3rem] lg:text-[3.6rem] font-bold leading-[1.1]"
-            style={{ fontFamily: "Sora, sans-serif", perspective: "1000px" }}
+          <motion.h1
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+            className="text-[1.9rem] sm:text-[2.6rem] md:text-[3rem] lg:text-[3.6rem] font-bold leading-[1.15]"
+            style={{ fontFamily: "Sora, sans-serif" }}
           >
             {words.map((word, i) => {
               const isHighlight = word === "líderes";
               return (
-                <motion.span
+                <span
                   key={i}
-                  initial={{ opacity: 0, y: 30, rotateX: 25, filter: "blur(8px)" }}
-                  animate={{ opacity: 1, y: 0, rotateX: 0, filter: "blur(0px)" }}
-                  transition={{ duration: 0.6, delay: 0.25 + i * 0.06, ease: "easeOut" }}
                   className={`inline-block mr-[0.22em] ${isHighlight ? "neon-text-glow" : ""}`}
-                  style={{ color: isHighlight ? "#06F9FA" : "#FFFFFF", display: "inline-block" }}
+                  style={{ color: isHighlight ? "#06F9FA" : "#FFFFFF" }}
                 >
                   {word}
-                </motion.span>
+                </span>
               );
             })}
-          </h1>
+          </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 24 }}

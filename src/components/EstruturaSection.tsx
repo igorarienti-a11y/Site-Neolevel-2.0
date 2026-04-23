@@ -29,7 +29,7 @@ const containerVariants: Variants = {
 };
 
 const itemVariants: Variants = {
-  hidden: { opacity: 0, x: -24, rotateY: -8 },
+  hidden: { opacity: 0, x: -24 },
   visible: {
     opacity: 1,
     x: 0,
@@ -39,7 +39,7 @@ const itemVariants: Variants = {
 };
 
 const statVariants: Variants = {
-  hidden: { opacity: 0, y: 32, rotateX: 20, scale: 0.94 },
+  hidden: { opacity: 0, y: 32 },
   visible: {
     opacity: 1,
     y: 0,
@@ -68,10 +68,10 @@ export function EstruturaSection() {
 
       <div className="max-w-6xl mx-auto" ref={ref}>
         <motion.div
-          initial={{ opacity: 0, y: 24, rotateX: 20 }}
-          animate={isInView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
+          initial={{ opacity: 0, y: 24 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          style={{ perspective: "600px" } as React.CSSProperties}
+          
           className="mb-4"
         >
           <span
@@ -83,18 +83,18 @@ export function EstruturaSection() {
         </motion.div>
 
         <motion.h2
-          initial={{ opacity: 0, y: 28, rotateX: 15 }}
-          animate={isInView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
+          initial={{ opacity: 0, y: 28 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.65, delay: 0.1 }}
           className="text-4xl md:text-5xl font-bold text-white mb-14"
-          style={{ fontFamily: "Sora, sans-serif", perspective: "800px" } as React.CSSProperties}
+          style={{ fontFamily: "Sora, sans-serif" } as React.CSSProperties}
         >
           Uma imersão de{" "}
           <span style={{ color: "#06F9FA" }}>2 anos</span>{" "}
           focada em alta performance.
         </motion.h2>
 
-        <div style={{ perspective: "1200px" }}>
+        <div >
           <motion.div
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
@@ -144,7 +144,7 @@ export function EstruturaSection() {
           Grade Curricular 2026
         </motion.h3>
 
-        <div style={{ perspective: "1000px" }}>
+        <div >
           <motion.div
             ref={gridRef}
             variants={containerVariants}

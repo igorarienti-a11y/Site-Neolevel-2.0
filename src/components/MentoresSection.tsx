@@ -20,7 +20,7 @@ const containerVariants: Variants = {
 };
 
 const cardVariants: Variants = {
-  hidden: { opacity: 0, y: 40, rotateX: 20, scale: 0.95 },
+  hidden: { opacity: 0, y: 32 },
   visible: {
     opacity: 1,
     y: 0,
@@ -50,10 +50,10 @@ export function MentoresSection() {
 
       <div className="max-w-6xl mx-auto" ref={ref}>
         <motion.div
-          initial={{ opacity: 0, y: 24, rotateX: 20 }}
-          animate={isInView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
+          initial={{ opacity: 0, y: 24 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          style={{ perspective: 600 }}
+          
           className="mb-4"
         >
           <span
@@ -65,11 +65,11 @@ export function MentoresSection() {
         </motion.div>
 
         <motion.h2
-          initial={{ opacity: 0, y: 28, rotateX: 15 }}
-          animate={isInView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
+          initial={{ opacity: 0, y: 28 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.65, delay: 0.1 }}
           className="text-4xl md:text-5xl font-bold text-white mb-4 max-w-2xl"
-          style={{ fontFamily: "Sora, sans-serif", perspective: "800px" } as React.CSSProperties}
+          style={{ fontFamily: "Sora, sans-serif" } as React.CSSProperties}
         >
           Seus mentores são empreendedores que construíram{" "}
           <span style={{ color: "#06F9FA" }}>ecossistemas gigantescos</span>.
@@ -85,7 +85,7 @@ export function MentoresSection() {
           negócio e possuem know-how para preparar os próximos líderes.
         </motion.p>
 
-        <div style={{ perspective: "1400px" }}>
+        <div >
           <motion.div
             variants={containerVariants}
             initial="hidden"

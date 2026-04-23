@@ -298,7 +298,7 @@ export function NetworkCanvas() {
         const glow = stage.glowR * pulse;
 
         ctx.shadowColor = `rgb(${cr|0},${cg|0},${cb|0})`;
-        ctx.shadowBlur = glow;
+        ctx.shadowBlur = Math.min(glow, 10);
 
         ctx.beginPath();
         ctx.arc(pos[i].x, pos[i].y, radius, 0, Math.PI * 2);
@@ -326,11 +326,24 @@ export function NetworkCanvas() {
       ctx.restore();
     }
 
+    const isMobile = window.innerWidth < 640;
+    if (isMobile) {
+      return () => {};
+    }
+
     draw();
 
     function onScroll() {
       const max = document.documentElement.scrollHeight - window.innerHeight;
       scrollProgress = max > 0 ? Math.min(1, window.scrollY / max) : 0;
+    }
+
+    function onVisibility() {
+      if (document.hidden) {
+        cancelAnimationFrame(raf);
+      } else {
+        draw();
+      }
     }
 
     function onResize() {
@@ -343,11 +356,13 @@ export function NetworkCanvas() {
 
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onResize);
+    document.addEventListener("visibilitychange", onVisibility);
 
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onResize);
+      document.removeEventListener("visibilitychange", onVisibility);
     };
   }, []);
 
