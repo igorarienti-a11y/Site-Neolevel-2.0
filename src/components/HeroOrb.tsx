@@ -68,7 +68,7 @@ function buildGraph() {
 
   nodes.push({ pos: new THREE.Vector3(0, 0, 0), scale: 0.72, isCenter: true, phase: 0 });
 
-  const r1 = 3.2;
+  const r1 = 4.5;
   const layer1Angles = [
     [0.52, 1.05], [2.09, 2.09], [3.67, 0.52],
     [4.71, 1.57], [1.26, 2.62], [5.76, 1.05],
@@ -94,7 +94,7 @@ function buildGraph() {
   edges.push({ a: 1, b: 8, phase: 0.4 });
   edges.push({ a: 2, b: 7, phase: 1.1 });
 
-  const r2 = 5.8;
+  const r2 = 9.0;
   const layer2Angles = [
     [0.79, 0.79], [2.36, 1.26], [3.93, 0.52],
     [5.50, 1.83], [1.05, 2.36], [2.62, 0.26],
@@ -203,18 +203,18 @@ export function HeroOrb() {
     <div
       style={{
         position: "absolute",
-        right: "0%",
+        left: 0,
         top: 0,
-        width: "58%",
+        width: "100%",
         height: "100%",
         pointerEvents: "none",
-        maskImage: "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.3) 15%, black 35%)",
-        WebkitMaskImage: "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.3) 15%, black 35%)",
+        maskImage: "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.15) 35%, black 55%)",
+        WebkitMaskImage: "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.15) 35%, black 55%)",
       }}
     >
       <Canvas
         style={{ width: "100%", height: "100%" }}
-        camera={{ position: [0.5, 0.3, 12], fov: 52 }}
+        camera={{ position: [1.5, 0, 14], fov: 70 }}
         gl={{ alpha: true, antialias: true }}
       >
         <NetworkScene />
