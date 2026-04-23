@@ -66,7 +66,7 @@ function buildGraph() {
   const nodes: NodeDef[] = [];
   const edges: EdgeDef[] = [];
 
-  nodes.push({ pos: new THREE.Vector3(0, 0, 0), scale: 0.72, isCenter: true, phase: 0 });
+  nodes.push({ pos: new THREE.Vector3(0, 0, 0), scale: 1.1, isCenter: true, phase: 0 });
 
   const r1 = 4.5;
   const layer1Angles = [
@@ -77,7 +77,7 @@ function buildGraph() {
   layer1Angles.forEach(([theta, phi], i) => {
     nodes.push({
       pos: spherePoint(r1, theta, phi),
-      scale: 0.50,
+      scale: 0.78,
       isCenter: false,
       phase: (i / 8) * Math.PI * 2,
     });
@@ -105,7 +105,7 @@ function buildGraph() {
   layer2Angles.forEach(([theta, phi], i) => {
     nodes.push({
       pos: spherePoint(r2, theta, phi),
-      scale: 0.35,
+      scale: 0.55,
       isCenter: false,
       phase: i * 0.85 + 1.1,
     });
