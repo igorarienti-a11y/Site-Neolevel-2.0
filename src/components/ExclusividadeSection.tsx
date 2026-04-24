@@ -83,7 +83,7 @@ export function ExclusividadeSection() {
             className="flex flex-col items-center justify-center"
           >
             <div
-              className="text-[5rem] sm:text-[7rem] md:text-[10rem] font-bold leading-none neon-text-glow"
+              className="text-[3.5rem] sm:text-[5.5rem] md:text-[10rem] font-bold leading-none neon-text-glow"
               style={{
                 fontFamily: "Sora, sans-serif",
                 color: "#06F9FA",
@@ -114,7 +114,7 @@ export function ExclusividadeSection() {
           <p className="text-[#D9D9D9]/60 text-sm">3 etapas para entrar na próxima turma</p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4" style={{ perspective: "1200px" }}>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-4" style={{ perspective: "1200px" }}>
           {steps.map((step, i) => {
             const Icon = step.icon;
             return (

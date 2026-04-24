@@ -36,7 +36,7 @@ export function InscricaoSection() {
   return (
     <section
       id="inscricao"
-      className="py-24 px-6 relative overflow-hidden"
+      className="py-16 md:py-24 px-4 sm:px-6 relative overflow-hidden"
       style={{ background: "rgba(14,26,43,0.95)" }}
     >
       <div
@@ -75,7 +75,7 @@ export function InscricaoSection() {
           initial={{ opacity: 0, y: 28 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.15 }}
-          className="rounded-2xl p-8"
+          className="rounded-2xl p-5 sm:p-8"
           style={{
             background: "rgba(255,255,255,0.03)",
             border: "1px solid rgba(6,249,250,0.1)",

@@ -1,45 +1,18 @@
 "use client";
 
-import { useRef, useMemo } from "react";
+import { useRef, useMemo, useState, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
-function makeProfileTexture(size = 128, isCenter = false): THREE.CanvasTexture {
-  const canvas = document.createElement("canvas");
-  canvas.width = size;
-  canvas.height = size;
-  const ctx = canvas.getContext("2d")!;
-  const cx = size / 2;
-  const cy = size / 2;
-  const r = size / 2 - 2;
-
-  ctx.beginPath();
-  ctx.arc(cx, cy, r, 0, Math.PI * 2);
-  ctx.fillStyle = isCenter ? "rgba(6,249,250,0.10)" : "rgba(14,26,43,0.88)";
-  ctx.fill();
-
-  ctx.beginPath();
-  ctx.arc(cx, cy, r, 0, Math.PI * 2);
-  ctx.strokeStyle = isCenter ? "#06F9FA" : "rgba(6,249,250,0.5)";
-  ctx.lineWidth = isCenter ? 4 : 2;
-  ctx.stroke();
-
-  // head
-  ctx.beginPath();
-  ctx.arc(cx, cy * 0.78, size * 0.16, 0, Math.PI * 2);
-  ctx.fillStyle = isCenter ? "rgba(6,249,250,0.85)" : "rgba(6,249,250,0.5)";
-  ctx.fill();
-
-  // body
-  ctx.save();
-  ctx.beginPath();
-  ctx.arc(cx, cy * 1.55, size * 0.25, Math.PI, 0);
-  ctx.fillStyle = isCenter ? "rgba(6,249,250,0.85)" : "rgba(6,249,250,0.5)";
-  ctx.fill();
-  ctx.restore();
-
-  return new THREE.CanvasTexture(canvas);
-}
+const PHOTO_URLS = [
+  "/avatars/10.jpg", "/avatars/11.jpg", "/avatars/12.jpg", "/avatars/13.jpg",
+  "/avatars/14.jpg", "/avatars/15.jpg", "/avatars/16.jpg", "/avatars/21.jpg",
+  "/avatars/23.jpg", "/avatars/26.jpg", "/avatars/3.jpg",  "/avatars/5.jpg",
+  "/avatars/7.jpg",  "/avatars/8.jpg",  "/avatars/9.jpg",  "/avatars/m1.jpg",
+  "/avatars/m10.jpg","/avatars/m12.jpg","/avatars/m14.jpg","/avatars/m4.jpg",
+  "/avatars/m5.jpg", "/avatars/m6.jpg", "/avatars/m7.jpg", "/avatars/m9.jpg",
+  "/avatars/w2.jpg", "/avatars/w4.jpg", "/avatars/w5.jpg", "/avatars/w8.jpg",
+];
 
 interface NodeDef {
   pos: THREE.Vector3;
@@ -131,15 +104,99 @@ function buildGraph() {
   return { nodes, edges };
 }
 
+// Circle mask texture baked on a canvas — no external image, no CORS
+function makeCircleMask(size = 128): THREE.CanvasTexture {
+  const canvas = document.createElement("canvas");
+  canvas.width = size;
+  canvas.height = size;
+  const ctx = canvas.getContext("2d")!;
+  ctx.clearRect(0, 0, size, size);
+  ctx.beginPath();
+  ctx.arc(size / 2, size / 2, size / 2 - 1, 0, Math.PI * 2);
+  ctx.fillStyle = "#ffffff";
+  ctx.fill();
+  return new THREE.CanvasTexture(canvas);
+}
+
+function NodeMesh({
+  node,
+  photoUrl,
+  nodeRef,
+}: {
+  node: NodeDef;
+  photoUrl: string;
+  nodeRef: (el: THREE.Mesh | null) => void;
+}) {
+  const [photoTex, setPhotoTex] = useState<THREE.Texture | null>(null);
+
+  const circleMask = useMemo(() => makeCircleMask(128), []);
+
+  const borderColor = node.isCenter ? "#06F9FA" : "rgba(6,249,250,0.55)";
+  const borderWidth = node.isCenter ? 0.06 : 0.04;
+
+  useEffect(() => {
+    const loader = new THREE.TextureLoader();
+    loader.load(
+      photoUrl,
+      (tex) => {
+        tex.colorSpace = THREE.SRGBColorSpace;
+        setPhotoTex(tex);
+      },
+      undefined,
+      () => setPhotoTex(null)
+    );
+  }, [photoUrl]);
+
+  return (
+    <mesh position={node.pos} ref={nodeRef}>
+      {/* Border ring slightly behind */}
+      <mesh position={[0, 0, -0.01]}>
+        <ringGeometry args={[0.48, 0.52 + borderWidth, 48]} />
+        <meshBasicMaterial
+          color={node.isCenter ? "#06F9FA" : "#06F9FA"}
+          transparent
+          opacity={node.isCenter ? 1.0 : 0.55}
+          depthWrite={false}
+          side={THREE.DoubleSide}
+        />
+      </mesh>
+
+      {/* Dark background circle */}
+      <mesh position={[0, 0, -0.005]}>
+        <circleGeometry args={[0.48, 48]} />
+        <meshBasicMaterial
+          color="#060e1a"
+          transparent
+          opacity={0.9}
+          depthWrite={false}
+          side={THREE.DoubleSide}
+        />
+      </mesh>
+
+      {/* Photo circle */}
+      <mesh>
+        <circleGeometry args={[0.47, 48]} />
+        <meshBasicMaterial
+          map={photoTex ?? undefined}
+          alphaMap={photoTex ? circleMask : undefined}
+          transparent
+          depthWrite={false}
+          side={THREE.DoubleSide}
+          color={photoTex ? "#ffffff" : "#06F9FA"}
+          opacity={photoTex ? 1.0 : 0.3}
+        />
+      </mesh>
+    </mesh>
+  );
+}
+
 function NetworkScene() {
   const groupRef = useRef<THREE.Group>(null);
   const edgeMatsRef = useRef<THREE.LineBasicMaterial[]>([]);
   const nodeMeshesRef = useRef<THREE.Mesh[]>([]);
 
-  const { nodes, edges, textures, lineObjects } = useMemo(() => {
+  const { nodes, edges, lineObjects } = useMemo(() => {
     const { nodes, edges } = buildGraph();
-    const textures = nodes.map((n) => makeProfileTexture(128, n.isCenter));
-
     const lineObjects = edges.map((e) => {
       const a = nodes[e.a].pos;
       const b = nodes[e.b].pos;
@@ -151,8 +208,7 @@ function NetworkScene() {
       });
       return { line: new THREE.Line(geo, mat), mat };
     });
-
-    return { nodes, edges, textures, lineObjects };
+    return { nodes, edges, lineObjects };
   }, []);
 
   useFrame((state) => {
@@ -164,12 +220,10 @@ function NetworkScene() {
     }
     edgeMatsRef.current.forEach((mat, i) => {
       if (!mat) return;
-      const phase = edges[i]?.phase ?? 0;
-      mat.opacity = 0.08 + Math.sin(t * 0.9 + phase) * 0.02;
+      mat.opacity = 0.08 + Math.sin(t * 0.9 + (edges[i]?.phase ?? 0)) * 0.02;
     });
     nodeMeshesRef.current.forEach((mesh, i) => {
       if (!mesh) return;
-      // Billboard: always face the camera regardless of group rotation
       mesh.lookAt(state.camera.position);
       const phase = nodes[i]?.phase ?? 0;
       const base = nodes[i]?.scale ?? 0.4;
@@ -188,19 +242,14 @@ function NetworkScene() {
       })}
 
       {nodes.map((node, i) => (
-        <mesh
+        <NodeMesh
           key={`n${i}`}
-          position={node.pos}
-          ref={(el) => { if (el) nodeMeshesRef.current[i] = el; }}
-        >
-          <planeGeometry args={[1, 1]} />
-          <meshBasicMaterial
-            map={textures[i]}
-            transparent
-            depthWrite={false}
-            side={THREE.DoubleSide}
-          />
-        </mesh>
+          node={node}
+          photoUrl={PHOTO_URLS[i % PHOTO_URLS.length]}
+          nodeRef={(el) => {
+            if (el) nodeMeshesRef.current[i] = el;
+          }}
+        />
       ))}
     </group>
   );

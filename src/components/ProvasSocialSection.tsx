@@ -1,14 +1,184 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
-import { Play } from "lucide-react";
+import { useRef, useState, useEffect } from "react";
+import { motion, useInView, AnimatePresence } from "framer-motion";
+import { Play, X } from "lucide-react";
 
-const placeholders = [
-  { initials: "AL", name: "Aluno 01", role: "Herdeiro | Família empresarial" },
-  { initials: "AL", name: "Aluno 02", role: "First-time Founder | Startup" },
-  { initials: "AL", name: "Aluno 03", role: "Empreendedor | Indústria" },
+const testimonials = [
+  { src: "/videos/Ana-souza-grupo-khronos.mp4", name: "Ana Souza", role: "Grupo Khronos", thumbTime: 0.5, thumbPosition: "center 35%" },
+  { src: "/videos/Eduarda-decoracao-nautica.mp4", name: "Eduarda", role: "Decoração Náutica", thumbTime: 0.5, thumbPosition: "center 15%" },
+  { src: "/videos/Yasmin.mp4", name: "Yasmin", role: "Empreendedora", thumbTime: 0.5, thumbPosition: "center 35%" },
 ];
+
+function VideoThumbnail({ src, thumbTime, objectPosition }: { src: string; thumbTime: number; objectPosition: string }) {
+  const [dataUrl, setDataUrl] = useState<string>("");
+
+  useEffect(() => {
+    const video = document.createElement("video");
+    video.src = src;
+    video.muted = true;
+    video.playsInline = true;
+    video.preload = "metadata";
+
+    video.addEventListener("loadedmetadata", () => {
+      video.currentTime = thumbTime;
+    });
+
+    video.addEventListener("seeked", () => {
+      const canvas = document.createElement("canvas");
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      canvas.getContext("2d")?.drawImage(video, 0, 0);
+      setDataUrl(canvas.toDataURL("image/jpeg", 0.85));
+      video.remove();
+    });
+  }, [src, thumbTime]);
+
+  return dataUrl ? (
+    <img
+      src={dataUrl}
+      alt=""
+      className="absolute inset-0 w-full h-full object-cover"
+      style={{ objectPosition }}
+    />
+  ) : null;
+}
+
+function VideoModal({ src, name, role, onClose }: { src: string; name: string; role: string; onClose: () => void }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    videoRef.current?.play();
+    document.body.style.overflow = "hidden";
+    return () => { document.body.style.overflow = ""; };
+  }, []);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.2 }}
+      className="fixed inset-0 z-50 flex items-center justify-center"
+      style={{ background: "rgba(0,0,0,0.92)", backdropFilter: "blur(8px)" }}
+      onClick={onClose}
+    >
+      <motion.div
+        initial={{ scale: 0.92, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.92, opacity: 0 }}
+        transition={{ duration: 0.25 }}
+        className="relative flex flex-col items-center"
+        style={{ maxHeight: "95vh" }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Video 9:16 */}
+        <div
+          className="relative overflow-hidden rounded-2xl"
+          style={{
+            aspectRatio: "9/16",
+            height: "min(88vh, 640px)",
+            border: "1px solid rgba(6,249,250,0.15)",
+            boxShadow: "0 0 60px rgba(6,249,250,0.08)",
+          }}
+        >
+          <video
+            ref={videoRef}
+            src={src}
+            className="w-full h-full object-cover"
+            controls
+            playsInline
+            autoPlay
+          />
+        </div>
+
+        {/* Name below */}
+        <div className="mt-4 text-center">
+          <div className="text-white font-semibold text-sm" style={{ fontFamily: "Sora, sans-serif" }}>{name}</div>
+          <div className="text-[#D9D9D9]/50 text-xs mt-0.5">{role}</div>
+        </div>
+      </motion.div>
+
+      {/* Close button */}
+      <button
+        onClick={onClose}
+        className="absolute top-5 right-5 w-10 h-10 rounded-full flex items-center justify-center transition-colors"
+        style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.12)" }}
+      >
+        <X size={18} color="#fff" />
+      </button>
+    </motion.div>
+  );
+}
+
+function VideoCard({ t, index, isInView }: { t: (typeof testimonials)[0]; index: number; isInView: boolean }) {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <>
+      <motion.div
+        initial={{ opacity: 0, y: 28 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.55, delay: index * 0.1 }}
+        className="rounded-2xl border overflow-hidden group cursor-pointer"
+        style={{ background: "rgba(18,32,58,0.6)", borderColor: "rgba(6,249,250,0.12)" }}
+        onClick={() => setOpen(true)}
+      >
+        {/* Thumbnail */}
+        <div
+          className="aspect-video relative overflow-hidden"
+          style={{ background: "#0a1628" }}
+        >
+          <VideoThumbnail src={t.src} thumbTime={t.thumbTime} objectPosition={t.thumbPosition} />
+
+          {/* Dark overlay */}
+          <div
+            className="absolute inset-0"
+            style={{ background: "rgba(6,14,25,0.45)" }}
+          />
+
+          {/* Play button — same style as VideoSection */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <motion.div
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              className="relative w-16 h-16 rounded-full flex items-center justify-center"
+              style={{ background: "rgba(6,249,250,0.9)", boxShadow: "0 0 40px rgba(6,249,250,0.4)" }}
+            >
+              <motion.div
+                className="absolute inset-0 rounded-full"
+                style={{ border: "2px solid rgba(6,249,250,0.5)" }}
+                animate={{ scale: [1, 1.6], opacity: [0.5, 0] }}
+                transition={{ duration: 1.8, repeat: Infinity, ease: "easeOut" }}
+              />
+              <Play size={22} fill="#0a1628" style={{ color: "#0a1628", marginLeft: 3 }} />
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Footer */}
+        <div className="p-5 flex items-center gap-3">
+          <div
+            className="w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold shrink-0"
+            style={{ background: "rgba(6,249,250,0.1)", color: "#06F9FA", fontFamily: "Sora, sans-serif" }}
+          >
+            {t.name[0]}
+          </div>
+          <div>
+            <div className="text-sm font-semibold text-white" style={{ fontFamily: "Sora, sans-serif" }}>{t.name}</div>
+            <div className="text-xs text-[#D9D9D9]/50 mt-0.5">{t.role}</div>
+          </div>
+        </div>
+      </motion.div>
+
+      <AnimatePresence>
+        {open && (
+          <VideoModal src={t.src} name={t.name} role={t.role} onClose={() => setOpen(false)} />
+        )}
+      </AnimatePresence>
+    </>
+  );
+}
 
 export function ProvasSocialSection() {
   const ref = useRef<HTMLDivElement>(null);
@@ -18,10 +188,7 @@ export function ProvasSocialSection() {
     <section className="py-20 md:py-28 px-4 sm:px-6 relative overflow-hidden" style={{ background: "rgba(30,30,30,0.85)" }}>
       <div
         className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse 50% 40% at 50% 100%, rgba(6,249,250,0.05), transparent 70%)",
-        }}
+        style={{ background: "radial-gradient(ellipse 50% 40% at 50% 100%, rgba(6,249,250,0.05), transparent 70%)" }}
       />
 
       <div className="max-w-6xl mx-auto" ref={ref}>
@@ -46,60 +213,8 @@ export function ProvasSocialSection() {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-          {placeholders.map((p, i) => (
-            <motion.div
-              key={p.name}
-              initial={{ opacity: 0, y: 28 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.55, delay: i * 0.1 }}
-              className="rounded-2xl border overflow-hidden group cursor-pointer"
-              style={{
-                background: "rgba(18,32,58,0.6)",
-                borderColor: "rgba(255,255,255,0.07)",
-              }}
-            >
-              <div
-                className="aspect-video flex items-center justify-center relative"
-                style={{ background: "rgba(255,255,255,0.03)" }}
-              >
-                <div
-                  className="w-14 h-14 rounded-full flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
-                  style={{
-                    background: "rgba(6,249,250,0.15)",
-                    border: "1px solid rgba(6,249,250,0.25)",
-                  }}
-                >
-                  <Play size={22} style={{ color: "#06F9FA", marginLeft: 2 }} />
-                </div>
-                <div
-                  className="absolute inset-0 flex items-end p-4"
-                  style={{
-                    background: "linear-gradient(to top, rgba(18,32,58,0.7), transparent)",
-                  }}
-                >
-                  <span className="text-xs text-[#D9D9D9]/50">Depoimento em breve</span>
-                </div>
-              </div>
-
-              <div className="p-5 flex items-center gap-3">
-                <div
-                  className="w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold shrink-0"
-                  style={{
-                    background: "rgba(6,249,250,0.1)",
-                    color: "#06F9FA",
-                    fontFamily: "Sora, sans-serif",
-                  }}
-                >
-                  {p.initials}
-                </div>
-                <div>
-                  <div className="text-sm font-semibold text-white" style={{ fontFamily: "Sora, sans-serif" }}>
-                    {p.name}
-                  </div>
-                  <div className="text-xs text-[#D9D9D9]/50 mt-0.5">{p.role}</div>
-                </div>
-              </div>
-            </motion.div>
+          {testimonials.map((t, i) => (
+            <VideoCard key={t.src} t={t} index={i} isInView={isInView} />
           ))}
         </div>
       </div>

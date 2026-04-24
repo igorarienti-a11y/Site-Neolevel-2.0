@@ -144,13 +144,68 @@ export function EstruturaSection() {
           Grade Curricular 2026
         </motion.h3>
 
-        <div >
-          <motion.div
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-start">
+          {/* Foto da estrutura */}
+          <div className="flex flex-col gap-4">
+            <motion.div
+              initial={{ opacity: 0, x: -24 }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.7, delay: 0.25 }}
+              className="relative rounded-2xl overflow-hidden"
+              style={{ border: "1px solid rgba(6,249,250,0.1)" }}
+            >
+              <img
+                src="/stock/estrutura-opt.jpg"
+                alt="Infraestrutura FIESC"
+                className="w-full object-cover"
+                style={{ minHeight: "220px", maxHeight: "340px" }}
+              />
+              <div
+                className="absolute inset-0"
+                style={{ background: "linear-gradient(to top, rgba(6,14,25,0.7) 0%, transparent 60%)" }}
+              />
+              <div className="absolute bottom-5 left-5 right-5">
+                <p className="text-white font-semibold text-sm" style={{ fontFamily: "Sora, sans-serif" }}>
+                  Academia de Negócios FIESC
+                </p>
+                <p className="text-[#D9D9D9]/60 text-xs mt-0.5">Infraestrutura de excelência em Santa Catarina</p>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: -24 }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.7, delay: 0.4 }}
+              className="relative rounded-2xl overflow-hidden"
+              style={{ border: "1px solid rgba(6,249,250,0.1)" }}
+            >
+              <img
+                src="/stock/estrutura-2.jpg"
+                alt="Infraestrutura FIESC 2"
+                className="w-full object-cover"
+                style={{ minHeight: "220px", maxHeight: "340px" }}
+              />
+              <div
+                className="absolute inset-0"
+                style={{ background: "linear-gradient(to top, rgba(6,14,25,0.7) 0%, transparent 60%)" }}
+              />
+              <div className="absolute bottom-5 left-5 right-5">
+                <p className="text-white font-semibold text-sm" style={{ fontFamily: "Sora, sans-serif" }}>
+                  Ambiente de alto nível
+                </p>
+                <p className="text-[#D9D9D9]/60 text-xs mt-0.5">Salas equipadas para formação executiva</p>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Grade curricular */}
+          <div>
+            <motion.div
             ref={gridRef}
             variants={containerVariants}
             initial="hidden"
             animate={gridInView ? "visible" : "hidden"}
-            className="grid grid-cols-1 md:grid-cols-2 gap-3"
+            className="grid grid-cols-1 gap-3"
             style={{ transformStyle: "preserve-3d" }}
           >
             {disciplinas.map((d, i) => (
@@ -178,7 +233,8 @@ export function EstruturaSection() {
               </motion.div>
             ))}
           </motion.div>
-        </div>
+          </div> {/* close grade curricular column */}
+        </div> {/* close 2-col grid */}
 
         <motion.div
           initial={{ opacity: 0, y: 16 }}

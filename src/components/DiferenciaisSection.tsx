@@ -133,7 +133,7 @@ export function DiferenciaisSection() {
             variants={containerVariants}
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
-            className="grid grid-cols-1 md:grid-cols-3 gap-4"
+            className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-4"
             style={{ transformStyle: "preserve-3d" }}
           >
             {diferenciais.map((item) => {
@@ -141,7 +141,7 @@ export function DiferenciaisSection() {
               return (
                 <motion.div key={item.title} variants={cardVariants} className={item.span}>
                   <Tilt3D
-                    className="h-full rounded-2xl p-6 border cursor-default"
+                    className="h-full rounded-2xl border cursor-default overflow-hidden"
                     intensity={8}
                     style={{
                       background: item.featured
@@ -152,39 +152,27 @@ export function DiferenciaisSection() {
                         : "rgba(255,255,255,0.06)",
                     }}
                   >
-                    <div
-                      className="w-11 h-11 rounded-xl flex items-center justify-center mb-4"
-                      style={{
-                        background: item.featured
-                          ? "rgba(6,249,250,0.15)"
-                          : "rgba(255,255,255,0.05)",
-                      }}
-                    >
-                      <Icon
-                        size={20}
-                        style={{ color: item.featured ? "#06F9FA" : "#D9D9D9" }}
-                      />
-                    </div>
-
-                    <h3
-                      className="text-lg font-semibold text-white mb-2"
-                      style={{ fontFamily: "Sora, sans-serif" }}
-                    >
-                      {item.title}
-                    </h3>
-                    <p className="text-[#D9D9D9]/70 text-sm leading-relaxed">
-                      {item.description}
-                    </p>
-
-                    {item.featured && (
+                      <div className="p-4 md:p-6">
                       <div
-                        className="mt-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold"
-                        style={{ background: "rgba(6,249,250,0.12)", color: "#06F9FA" }}
+                        className="w-11 h-11 rounded-xl flex items-center justify-center mb-4"
+                        style={{
+                          background: item.featured ? "rgba(6,249,250,0.15)" : "rgba(255,255,255,0.05)",
+                        }}
                       >
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#06F9FA]" />
-                        Até US$ 5.000 em venture capital
+                        <Icon size={20} style={{ color: item.featured ? "#06F9FA" : "#D9D9D9" }} />
                       </div>
-                    )}
+                      <h3 className="text-lg font-semibold text-white mb-2" style={{ fontFamily: "Sora, sans-serif" }}>{item.title}</h3>
+                      <p className="text-[#D9D9D9]/70 text-sm leading-relaxed">{item.description}</p>
+                      {item.featured && (
+                        <div
+                          className="mt-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold"
+                          style={{ background: "rgba(6,249,250,0.12)", color: "#06F9FA" }}
+                        >
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#06F9FA]" />
+                          Até US$ 5.000 em venture capital
+                        </div>
+                      )}
+                    </div>
                   </Tilt3D>
                 </motion.div>
               );

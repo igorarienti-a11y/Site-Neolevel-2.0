@@ -13,7 +13,7 @@ const personas = [
     body: "Prepare-se para honrar e expandir o patrimônio familiar com visão estratégica e governança moderna. Herança vem com expectativas — mas não vem com manual de instruções. O Neolevel entrega o método.",
     cta: "Quero preparar meu legado",
     delay: 0,
-    
+    photo: "/stock/herdeiro.png",
   },
   {
     icon: Lightbulb,
@@ -22,7 +22,7 @@ const personas = [
     body: "Transforme ideias em empresas lucrativas com método. Valide seu modelo de negócio, conquiste o mercado e aprenda com quem já construiu ecossistemas empresariais de sucesso.",
     cta: "Quero construir meu negócio",
     delay: 0.15,
-    
+    photo: "/stock/founder.png",
   },
 ];
 
@@ -36,7 +36,7 @@ export function ParaQuemSection() {
       className="py-20 md:py-28 px-4 sm:px-6 relative overflow-hidden"
       style={{ background: "rgba(18,32,58,0.88)" }}
     >
-      <div className="absolute inset-0 grid-lines opacity-30" />
+      <div className="absolute inset-0 grid-lines opacity-30 pointer-events-none" />
       <div
         className="absolute top-0 left-0 right-0 h-px"
         style={{ background: "linear-gradient(90deg, transparent, rgba(6,249,250,0.2), transparent)" }}
@@ -79,44 +79,55 @@ export function ParaQuemSection() {
                 transition={{ duration: 0.75, delay: p.delay, ease: [0.22, 1, 0.36, 1] }}
               >
                 <Tilt3D
-                  className="h-full rounded-2xl p-8 border"
+                  className="h-full rounded-2xl border overflow-hidden"
                   intensity={7}
                   style={{
                     background: "rgba(255,255,255,0.03)",
                     borderColor: "rgba(255,255,255,0.07)",
                   }}
                 >
-                  <div
-                    className="w-12 h-12 rounded-xl flex items-center justify-center mb-6"
-                    style={{ background: "rgba(6,249,250,0.1)" }}
-                  >
-                    <Icon size={22} style={{ color: "#06F9FA" }} />
+                  {/* Photo header */}
+                  <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
+                    <img
+                      src={p.photo}
+                      alt={p.title}
+                      className="w-full h-full object-cover object-center"
+                    />
+                    <div
+                      className="absolute inset-0"
+                      style={{
+                        background: "linear-gradient(to bottom, rgba(6,14,25,0.15) 0%, rgba(6,14,25,0.85) 100%)",
+                      }}
+                    />
+                    <div className="absolute bottom-4 left-5">
+                      <div
+                        className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold"
+                        style={{ background: "rgba(6,249,250,0.15)", color: "#06F9FA", backdropFilter: "blur(8px)", border: "1px solid rgba(6,249,250,0.2)" }}
+                      >
+                        <Icon size={11} />
+                        {p.tag}
+                      </div>
+                    </div>
                   </div>
 
-                  <div
-                    className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold mb-4"
-                    style={{ background: "rgba(6,249,250,0.08)", color: "#06F9FA" }}
-                  >
-                    {p.tag}
+                  {/* Content */}
+                  <div className="p-5 md:p-7">
+                    <h3
+                      className="text-2xl font-bold text-white mb-4"
+                      style={{ fontFamily: "Sora, sans-serif" }}
+                    >
+                      {p.title}
+                    </h3>
+                    <p className="text-[#D9D9D9]/75 leading-relaxed mb-8">{p.body}</p>
+                    <a
+                      href="#inscricao"
+                      className="inline-flex items-center gap-2 text-sm font-semibold transition-all duration-200 hover:gap-3"
+                      style={{ color: "#06F9FA" }}
+                    >
+                      {p.cta}
+                      <ArrowRight size={16} />
+                    </a>
                   </div>
-
-                  <h3
-                    className="text-2xl font-bold text-white mb-4"
-                    style={{ fontFamily: "Sora, sans-serif" }}
-                  >
-                    {p.title}
-                  </h3>
-
-                  <p className="text-[#D9D9D9]/75 leading-relaxed mb-8">{p.body}</p>
-
-                  <a
-                    href="#inscricao"
-                    className="inline-flex items-center gap-2 text-sm font-semibold transition-all duration-200 hover:gap-3"
-                    style={{ color: "#06F9FA" }}
-                  >
-                    {p.cta}
-                    <ArrowRight size={16} />
-                  </a>
                 </Tilt3D>
               </motion.div>
             );
