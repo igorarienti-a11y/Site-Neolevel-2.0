@@ -131,21 +131,31 @@ function NodeMesh({
 
   const circleMask = useMemo(() => makeCircleMask(128), []);
 
-  const borderColor = node.isCenter ? "#06F9FA" : "rgba(6,249,250,0.55)";
+  useEffect(() => {
+    return () => { circleMask.dispose(); };
+  }, [circleMask]);
+
   const borderWidth = node.isCenter ? 0.06 : 0.04;
 
   useEffect(() => {
+    let cancelled = false;
     const loader = new THREE.TextureLoader();
     loader.load(
       photoUrl,
       (tex) => {
+        if (cancelled) { tex.dispose(); return; }
         tex.colorSpace = THREE.SRGBColorSpace;
         setPhotoTex(tex);
       },
       undefined,
-      () => setPhotoTex(null)
+      () => { if (!cancelled) setPhotoTex(null); }
     );
+    return () => { cancelled = true; };
   }, [photoUrl]);
+
+  useEffect(() => {
+    return () => { photoTex?.dispose(); };
+  }, [photoTex]);
 
   return (
     <mesh position={node.pos} ref={nodeRef}>

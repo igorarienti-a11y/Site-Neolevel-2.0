@@ -186,6 +186,7 @@ export function InscricaoSection() {
                 <label className={labelClass}>Mensagem (opcional)</label>
                 <textarea
                   rows={4}
+                  maxLength={500}
                   placeholder="Conte-nos mais sobre você ou sua ideia..."
                   className={inputClass}
                   style={{ resize: "none" }}

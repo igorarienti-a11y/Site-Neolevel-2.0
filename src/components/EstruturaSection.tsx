@@ -159,6 +159,7 @@ export function EstruturaSection() {
                 alt="Infraestrutura FIESC"
                 className="w-full object-cover"
                 style={{ minHeight: "220px", maxHeight: "340px" }}
+                loading="lazy"
               />
               <div
                 className="absolute inset-0"
@@ -184,6 +185,7 @@ export function EstruturaSection() {
                 alt="Infraestrutura FIESC 2"
                 className="w-full object-cover"
                 style={{ minHeight: "220px", maxHeight: "340px" }}
+                loading="lazy"
               />
               <div
                 className="absolute inset-0"

@@ -1,7 +1,8 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import { ArrowRight, ChevronDown } from "lucide-react";
 
 const HeroOrb = dynamic(() => import("./HeroOrb").then((m) => ({ default: m.HeroOrb })), {
@@ -12,6 +13,9 @@ const headline = "A próxima geração de líderes está sendo formada aqui!";
 const words = headline.split(" ");
 
 export function HeroSection() {
+  const chevronRef = useRef<HTMLDivElement>(null);
+  const chevronInView = useInView(chevronRef, { once: false, amount: 0.5 });
+
   return (
     <section
       className="relative flex flex-col items-center justify-center overflow-hidden"
@@ -150,8 +154,9 @@ export function HeroSection() {
       </div>
 
       <motion.div
+        ref={chevronRef}
         className="absolute bottom-6 left-1/2 -translate-x-1/2"
-        animate={{ y: [0, 6, 0] }}
+        animate={chevronInView ? { y: [0, 6, 0] } : { y: 0 }}
         transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
       >
         <ChevronDown size={20} style={{ color: "rgba(6,249,250,0.5)" }} />

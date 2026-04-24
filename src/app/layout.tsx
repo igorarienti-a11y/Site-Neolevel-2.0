@@ -15,6 +15,14 @@ export const metadata: Metadata = {
     description:
       "Formação de gestão empresarial para jovens líderes de 17 a 30 anos. Mentoria com grandes empresários, networking exclusivo e metodologia hands-on na estrutura da FIESC.",
     type: "website",
+    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Neolevel Business School" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Neolevel | Business School para Jovens empreendedores e sucessores",
+    description:
+      "Formação de gestão empresarial para jovens líderes de 17 a 30 anos. Mentoria com grandes empresários, networking exclusivo e metodologia hands-on na estrutura da FIESC.",
+    images: ["/og-image.jpg"],
   },
 };
 

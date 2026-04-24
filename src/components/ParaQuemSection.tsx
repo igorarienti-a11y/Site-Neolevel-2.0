@@ -92,6 +92,7 @@ export function ParaQuemSection() {
                       src={p.photo}
                       alt={p.title}
                       className="w-full h-full object-cover object-center"
+                      loading="lazy"
                     />
                     <div
                       className="absolute inset-0"

@@ -36,9 +36,8 @@ const footerLinks = [
 ];
 
 const socials = [
-  { Icon: InstagramIcon, href: "https://instagram.com", label: "Instagram" },
-  { Icon: LinkedinIcon, href: "https://linkedin.com", label: "LinkedIn" },
-  { Icon: YoutubeIcon, href: "https://youtube.com", label: "YouTube" },
+  { Icon: InstagramIcon, href: "https://www.instagram.com/neoleveloficial/", label: "Instagram" },
+  { Icon: YoutubeIcon, href: "https://www.youtube.com/@Neoleveloficial", label: "YouTube" },
 ];
 
 export function Footer() {

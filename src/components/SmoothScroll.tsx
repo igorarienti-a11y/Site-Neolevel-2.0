@@ -53,7 +53,7 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
 
     return () => {
       cancelAnimationFrame(rafId);
-      lenis.destroy();
+      lenis?.destroy();
       document.removeEventListener("click", handleAnchorClick);
     };
   }, []);

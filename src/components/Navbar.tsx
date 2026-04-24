@@ -36,7 +36,7 @@ export function Navbar() {
       )}
     >
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="#" className="flex items-center">
+        <a href="/" className="flex items-center">
           <Image
             src="/neolevel-logo.png"
             alt="Neolevel"

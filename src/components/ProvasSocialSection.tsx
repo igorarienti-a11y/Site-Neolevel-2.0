@@ -100,9 +100,10 @@ function VideoCard({ t, index, isInView }: { t: (typeof testimonials)[0]; index:
           {thumb && (
             <img
               src={thumb}
-              alt={t.name}
+              alt={`Depoimento de ${t.name} — ${t.role}`}
               className="absolute inset-0 w-full h-full object-cover"
               style={{ objectPosition: t.thumbPosition }}
+              loading="lazy"
             />
           )}
           <div className="absolute inset-0" style={{ background: "rgba(6,14,25,0.45)" }} />

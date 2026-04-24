@@ -14,8 +14,6 @@ export function ScrollRibbon() {
     // Too heavy on mobile (full-page SVG + glow filter)
     if (window.innerWidth < 768) return;
 
-    let rafId = 0;
-
     const build = () => {
       const W = window.innerWidth;
       const footerEl = document.querySelector("footer");
@@ -55,7 +53,6 @@ export function ScrollRibbon() {
         p1.style.strokeDashoffset = `${len1 * (1 - progress)}`;
       };
 
-      window.removeEventListener("scroll", onScroll);
       window.addEventListener("scroll", onScroll, { passive: true });
       onScroll();
 
@@ -63,15 +60,17 @@ export function ScrollRibbon() {
     };
 
     let cleanup: (() => void) | null = null;
+    let timer: ReturnType<typeof setTimeout>;
 
     const init = () => {
       const fn = build();
       cleanup = () => window.removeEventListener("scroll", fn);
     };
 
-    const timer = setTimeout(init, 150);
+    timer = setTimeout(init, 150);
 
     const onResize = () => {
+      clearTimeout(timer);
       if (cleanup) cleanup();
       const fn = build();
       cleanup = () => window.removeEventListener("scroll", fn);
@@ -81,7 +80,6 @@ export function ScrollRibbon() {
 
     return () => {
       clearTimeout(timer);
-      cancelAnimationFrame(rafId);
       if (cleanup) cleanup();
       window.removeEventListener("resize", onResize);
     };
