@@ -5,9 +5,9 @@ import { motion, useInView, AnimatePresence } from "framer-motion";
 import { Play, X } from "lucide-react";
 
 const testimonials = [
-  { vimeoId: "1186110302", name: "Ana Souza", role: "Grupo Khronos" },
-  { vimeoId: "1186110324", name: "Eduarda", role: "Decoração Náutica" },
-  { vimeoId: "1186110332", name: "Yasmin", role: "Empreendedora" },
+  { vimeoId: "1186110302", name: "Ana Souza", role: "Grupo Khronos", thumbPosition: "center 20%" },
+  { vimeoId: "1186110324", name: "Eduarda", role: "Decoração Náutica", thumbPosition: "center 15%" },
+  { vimeoId: "1186110332", name: "Yasmin", role: "Empreendedora", thumbPosition: "center 20%" },
 ];
 
 function useVimeoThumb(vimeoId: string) {
@@ -101,7 +101,8 @@ function VideoCard({ t, index, isInView }: { t: (typeof testimonials)[0]; index:
             <img
               src={thumb}
               alt={t.name}
-              className="absolute inset-0 w-full h-full object-cover object-top"
+              className="absolute inset-0 w-full h-full object-cover"
+              style={{ objectPosition: t.thumbPosition }}
             />
           )}
           <div className="absolute inset-0" style={{ background: "rgba(6,14,25,0.45)" }} />
