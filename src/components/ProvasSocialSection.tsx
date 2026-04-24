@@ -5,50 +5,26 @@ import { motion, useInView, AnimatePresence } from "framer-motion";
 import { Play, X } from "lucide-react";
 
 const testimonials = [
-  { src: "/videos/Ana-souza-grupo-khronos.mp4", name: "Ana Souza", role: "Grupo Khronos", thumbTime: 0.5, thumbPosition: "center 35%" },
-  { src: "/videos/Eduarda-decoracao-nautica.mp4", name: "Eduarda", role: "Decoração Náutica", thumbTime: 0.5, thumbPosition: "center 15%" },
-  { src: "/videos/Yasmin.mp4", name: "Yasmin", role: "Empreendedora", thumbTime: 0.5, thumbPosition: "center 35%" },
+  { vimeoId: "1186110302", name: "Ana Souza", role: "Grupo Khronos" },
+  { vimeoId: "1186110324", name: "Eduarda", role: "Decoração Náutica" },
+  { vimeoId: "1186110332", name: "Yasmin", role: "Empreendedora" },
 ];
 
-function VideoThumbnail({ src, thumbTime, objectPosition }: { src: string; thumbTime: number; objectPosition: string }) {
-  const [dataUrl, setDataUrl] = useState<string>("");
+function useVimeoThumb(vimeoId: string) {
+  const [thumb, setThumb] = useState<string>("");
 
   useEffect(() => {
-    const video = document.createElement("video");
-    video.src = src;
-    video.muted = true;
-    video.playsInline = true;
-    video.preload = "metadata";
+    fetch(`https://vimeo.com/api/v2/video/${vimeoId}.json`)
+      .then((r) => r.json())
+      .then((data) => setThumb(data[0]?.thumbnail_large ?? ""))
+      .catch(() => {});
+  }, [vimeoId]);
 
-    video.addEventListener("loadedmetadata", () => {
-      video.currentTime = thumbTime;
-    });
-
-    video.addEventListener("seeked", () => {
-      const canvas = document.createElement("canvas");
-      canvas.width = video.videoWidth;
-      canvas.height = video.videoHeight;
-      canvas.getContext("2d")?.drawImage(video, 0, 0);
-      setDataUrl(canvas.toDataURL("image/jpeg", 0.85));
-      video.remove();
-    });
-  }, [src, thumbTime]);
-
-  return dataUrl ? (
-    <img
-      src={dataUrl}
-      alt=""
-      className="absolute inset-0 w-full h-full object-cover"
-      style={{ objectPosition }}
-    />
-  ) : null;
+  return thumb;
 }
 
-function VideoModal({ src, name, role, onClose }: { src: string; name: string; role: string; onClose: () => void }) {
-  const videoRef = useRef<HTMLVideoElement>(null);
-
+function VideoModal({ vimeoId, name, role, onClose }: { vimeoId: string; name: string; role: string; onClose: () => void }) {
   useEffect(() => {
-    videoRef.current?.play();
     document.body.style.overflow = "hidden";
     return () => { document.body.style.overflow = ""; };
   }, []);
@@ -69,10 +45,8 @@ function VideoModal({ src, name, role, onClose }: { src: string; name: string; r
         exit={{ scale: 0.92, opacity: 0 }}
         transition={{ duration: 0.25 }}
         className="relative flex flex-col items-center"
-        style={{ maxHeight: "95vh" }}
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Video 9:16 */}
         <div
           className="relative overflow-hidden rounded-2xl"
           style={{
@@ -82,24 +56,21 @@ function VideoModal({ src, name, role, onClose }: { src: string; name: string; r
             boxShadow: "0 0 60px rgba(6,249,250,0.08)",
           }}
         >
-          <video
-            ref={videoRef}
-            src={src}
-            className="w-full h-full object-cover"
-            controls
-            playsInline
-            autoPlay
+          <iframe
+            src={`https://player.vimeo.com/video/${vimeoId}?autoplay=1&title=0&byline=0&portrait=0`}
+            className="w-full h-full"
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowFullScreen
+            style={{ border: "none" }}
           />
         </div>
 
-        {/* Name below */}
         <div className="mt-4 text-center">
           <div className="text-white font-semibold text-sm" style={{ fontFamily: "Sora, sans-serif" }}>{name}</div>
           <div className="text-[#D9D9D9]/50 text-xs mt-0.5">{role}</div>
         </div>
       </motion.div>
 
-      {/* Close button */}
       <button
         onClick={onClose}
         className="absolute top-5 right-5 w-10 h-10 rounded-full flex items-center justify-center transition-colors"
@@ -113,6 +84,7 @@ function VideoModal({ src, name, role, onClose }: { src: string; name: string; r
 
 function VideoCard({ t, index, isInView }: { t: (typeof testimonials)[0]; index: number; isInView: boolean }) {
   const [open, setOpen] = useState(false);
+  const thumb = useVimeoThumb(t.vimeoId);
 
   return (
     <>
@@ -124,20 +96,16 @@ function VideoCard({ t, index, isInView }: { t: (typeof testimonials)[0]; index:
         style={{ background: "rgba(18,32,58,0.6)", borderColor: "rgba(6,249,250,0.12)" }}
         onClick={() => setOpen(true)}
       >
-        {/* Thumbnail */}
-        <div
-          className="aspect-video relative overflow-hidden"
-          style={{ background: "#0a1628" }}
-        >
-          <VideoThumbnail src={t.src} thumbTime={t.thumbTime} objectPosition={t.thumbPosition} />
+        <div className="aspect-video relative overflow-hidden" style={{ background: "#0a1628" }}>
+          {thumb && (
+            <img
+              src={thumb}
+              alt={t.name}
+              className="absolute inset-0 w-full h-full object-cover object-top"
+            />
+          )}
+          <div className="absolute inset-0" style={{ background: "rgba(6,14,25,0.45)" }} />
 
-          {/* Dark overlay */}
-          <div
-            className="absolute inset-0"
-            style={{ background: "rgba(6,14,25,0.45)" }}
-          />
-
-          {/* Play button — same style as VideoSection */}
           <div className="absolute inset-0 flex items-center justify-center">
             <motion.div
               whileHover={{ scale: 1.1 }}
@@ -156,7 +124,6 @@ function VideoCard({ t, index, isInView }: { t: (typeof testimonials)[0]; index:
           </div>
         </div>
 
-        {/* Footer */}
         <div className="p-5 flex items-center gap-3">
           <div
             className="w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold shrink-0"
@@ -173,7 +140,7 @@ function VideoCard({ t, index, isInView }: { t: (typeof testimonials)[0]; index:
 
       <AnimatePresence>
         {open && (
-          <VideoModal src={t.src} name={t.name} role={t.role} onClose={() => setOpen(false)} />
+          <VideoModal vimeoId={t.vimeoId} name={t.name} role={t.role} onClose={() => setOpen(false)} />
         )}
       </AnimatePresence>
     </>
@@ -214,7 +181,7 @@ export function ProvasSocialSection() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {testimonials.map((t, i) => (
-            <VideoCard key={t.src} t={t} index={i} isInView={isInView} />
+            <VideoCard key={t.vimeoId} t={t} index={i} isInView={isInView} />
           ))}
         </div>
       </div>
