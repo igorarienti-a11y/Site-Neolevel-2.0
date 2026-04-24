@@ -5,6 +5,11 @@ import Lenis from "lenis";
 
 export function SmoothScroll({ children }: { children: React.ReactNode }) {
   useEffect(() => {
+    history.scrollRestoration = "manual";
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     const isTouch = navigator.maxTouchPoints > 0 || "ontouchstart" in window;
 
     if (isTouch) {
