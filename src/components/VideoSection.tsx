@@ -58,7 +58,7 @@ export function VideoSection() {
               onClick={() => setPlaying(true)}
             >
               <img
-                src="https://img.youtube.com/vi/KtajxNLtPXQ/maxresdefault.jpg"
+                src="https://vumbnail.com/1186110671.jpg"
                 alt="Neolevel Business School"
                 className="w-full h-full object-cover opacity-60 group-hover:opacity-70 transition-opacity duration-300"
               />
@@ -82,8 +82,8 @@ export function VideoSection() {
           ) : (
             <div className="aspect-video">
               <iframe
-                src="https://www.youtube.com/embed/KtajxNLtPXQ?autoplay=1"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                src="https://player.vimeo.com/video/1186110671?autoplay=1&title=0&byline=0&portrait=0"
+                allow="autoplay; fullscreen; picture-in-picture"
                 allowFullScreen
                 className="w-full h-full"
                 style={{ border: "none" }}
