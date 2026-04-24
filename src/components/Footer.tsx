@@ -129,22 +129,11 @@ export function Footer() {
                 borderColor: "rgba(255,255,255,0.08)",
               }}
             >
-              <div
-                className="w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold"
-                style={{
-                  background: "rgba(6,249,250,0.1)",
-                  color: "#06F9FA",
-                  fontFamily: "Sora, sans-serif",
-                }}
-              >
-                F
-              </div>
-              <div>
-                <div className="text-white text-xs font-semibold" style={{ fontFamily: "Sora, sans-serif" }}>
-                  FIESC
-                </div>
-                <div className="text-[#D9D9D9]/50 text-[10px]">Academia de Negócios</div>
-              </div>
+              <img
+                src="/logo-fiesc.png"
+                alt="FIESC"
+                style={{ height: "32px", width: "auto", objectFit: "contain" }}
+              />
             </div>
             <p className="text-[#D9D9D9]/50 text-xs mt-4 leading-relaxed">
               Estrutura de excelência industrial de Santa Catarina ao seu alcance.
