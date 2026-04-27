@@ -13,7 +13,7 @@ const personas = [
     body: "Prepare-se para honrar e expandir o patrimônio familiar com visão estratégica e governança moderna. Herança vem com expectativas — mas não vem com manual de instruções. O Neolevel entrega o método.",
     cta: "Quero preparar meu legado",
     delay: 0,
-    photo: "/stock/herdeiro.png",
+    photo: "/stock/herdeiro.jpg",
   },
   {
     icon: Lightbulb,
@@ -22,7 +22,7 @@ const personas = [
     body: "Transforme ideias em empresas lucrativas com método. Valide seu modelo de negócio, conquiste o mercado e aprenda com quem já construiu ecossistemas empresariais de sucesso.",
     cta: "Quero construir meu negócio",
     delay: 0.15,
-    photo: "/stock/founder.png",
+    photo: "/stock/founder.jpg",
   },
 ];
 
