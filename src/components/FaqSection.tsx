@@ -17,6 +17,30 @@ const faqs = [
     q: "O curso é reconhecido?",
     a: "O Neolevel é uma formação de elite focada em resultados práticos de mercado. Diferente de uma faculdade tradicional, o valor está na metodologia hands-on, na qualidade dos mentores e nas conexões que você constrói ao longo dos 2 anos.",
   },
+  {
+    q: "Qual a duração do programa Neolevel?",
+    a: "O programa Neolevel é estruturado para oferecer uma formação completa em empreendedorismo, combinando teoria e prática. A duração específica pode variar conforme a turma. Entre em contato para saber mais sobre o calendário atual.",
+  },
+  {
+    q: "Quais os requisitos para inscrição?",
+    a: "Não há exigência de formação anterior! O Neolevel é a porta de entrada ideal para jovens que estão concluindo o ensino médio ou já trilham os primeiros passos da carreira. O mais importante é ter sede de conhecimento e visão empreendedora.",
+  },
+  {
+    q: "Onde acontecem as aulas e encontros?",
+    a: "As atividades acontecem na sede da Academia FIESC de Negócios, localizada na Rod. Admar Gonzaga, 2765 - Itacorubi, Florianópolis/SC. Também há atividades práticas em empresas parceiras e possibilidade de missões nacionais e internacionais.",
+  },
+  {
+    q: "Como funciona o processo de seleção para o Venture Capital?",
+    a: "Ao final do programa, os melhores projetos desenvolvidos pelos Neoleaders são selecionados para receber um aporte de até US$5.000 em Venture Capital. A avaliação considera critérios como inovação, viabilidade e potencial de impacto no mercado.",
+  },
+  {
+    q: "Há bolsas ou descontos disponíveis?",
+    a: "O Neolevel oferece diferentes condições de pagamento e possibilidades de bolsas para jovens talentos. Entre em contato com nossa equipe para conhecer as opções disponíveis e encontrar a melhor forma de investir no seu futuro.",
+  },
+  {
+    q: "Como posso entrar em contato?",
+    a: "Você pode entrar em contato pelo WhatsApp (48) 99669-0119, pelo e-mail oficialneolevel@gmail.com, ou preenchendo o formulário de inscrição aqui no site. Nossa equipe responderá o mais rápido possível!",
+  },
 ];
 
 function FaqItem({ q, a, index }: { q: string; a: string; index: number }) {
