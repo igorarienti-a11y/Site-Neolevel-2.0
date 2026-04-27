@@ -7,12 +7,12 @@ import { ArrowRight } from "lucide-react";
 import { Tilt3D } from "./Tilt3D";
 
 const mentores = [
-  { name: "Thiago Quadros", role: "CEO TOTVS", tema: "Inteligência Artificial aplicada ao crescimento", photo: "/mentor-thiago.jpg" },
-  { name: "Claudio Grando", role: "CEO AUDACES", tema: "Gestão e visão de mercado global", photo: "/mentor-claudio.png" },
-  { name: "Luiz Fernando Marca", role: "Empreendedor", tema: "Estruturação para crescimento e sucessão familiar", photo: "/mentor-luiz-fernando.jpg" },
-  { name: "Patricia Santos", role: "Especialista Corporativa", tema: "Excelência e mentoria corporativa padrão Disney", photo: "/mentor-patricia.jpg" },
-  { name: "Norberto Dias", role: "Especialista M&A", tema: "Especialista em M&A e resultados sênior", photo: "/mentor-norberto.png" },
-  { name: "Luiz Henrique Herling", role: "Estrategista Financeiro", tema: "Estratégia financeira e tomada de decisão", photo: "/mentor-luiz-henrique.jpg" },
+  { name: "Thiago Quadros", role: "Líder dos times de IA da TOTUS", tema: "Inteligência Artificial aplicada ao crescimento", photo: "/mentor-thiago.jpg" },
+  { name: "Claudio Grando", role: "Fundador e presidente do conselho administrativo do grupo AUDACES", tema: "Gestão e visão de mercado global", photo: "/mentor-claudio.png" },
+  { name: "Luiz Fernando Marca", role: "Criador do Sistema Orbis e consultor de estratégia empresarial", tema: "Estruturação para crescimento e sucessão familiar", photo: "/mentor-luiz-fernando.jpg" },
+  { name: "Patricia Santos", role: "Especialista em felicidade, gestão emocional e experiência do cliente", tema: "Excelência e mentoria corporativa padrão Disney", photo: "/mentor-patricia.jpg" },
+  { name: "Norberto Dias", role: "Empreendedor e especialista em M&A", tema: "Especialista em M&A e resultados sênior", photo: "/mentor-norberto.png" },
+  { name: "Luiz Henrique Herling", role: "CEO da SEL Logística e estrategista financeiro", tema: "Estratégia financeira e tomada de decisão", photo: "/mentor-luiz-henrique.jpg" },
 ];
 
 const containerVariants: Variants = {
@@ -72,8 +72,8 @@ export function MentoresSection() {
           className="text-4xl md:text-5xl font-bold text-white mb-4 max-w-2xl"
           style={{ fontFamily: "Sora, sans-serif" } as React.CSSProperties}
         >
-          Seus mentores são empreendedores que construíram{" "}
-          <span style={{ color: "#06F9FA" }}>ecossistemas gigantescos</span>.
+          Conheça o legado dos nossos{" "}
+          <span style={{ color: "#06F9FA" }}>Neomentores</span>
         </motion.h2>
 
         <motion.p
@@ -82,8 +82,7 @@ export function MentoresSection() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="text-[#D9D9D9] text-lg mb-14 max-w-xl"
         >
-          Fundadores, CEOs e especialistas que vivenciaram todas as etapas de um
-          negócio e possuem know-how para preparar os próximos líderes.
+          Empreendedores multisetoriais, especialistas em M&A, mentorias corporativas, CEOs e líderes empresariais de reconhecida performance, nossos Neomentores demonstram na prática o que você mais precisará para crescer: uma solução simples para seu problema complexo.
         </motion.p>
 
         <div >
@@ -125,12 +124,12 @@ export function MentoresSection() {
                         {mentor.name}
                       </div>
                       <div className="text-[#06F9FA] text-xs font-medium mt-0.5">
-                        {mentor.role}
+                        NEOMENTOR
                       </div>
                     </div>
                   </div>
                   <p className="text-[#D9D9D9]/65 text-sm leading-relaxed">
-                    {mentor.tema}
+                    {mentor.role}
                   </p>
                 </Tilt3D>
               </motion.div>

@@ -7,7 +7,7 @@ import { Tilt3D } from "./Tilt3D";
 
 const stats = [
   { icon: Calendar, value: "2", unit: "anos", label: "de formação" },
-  { icon: Clock, value: "960h", unit: "", label: "carga horária/ano" },
+  { icon: Clock, value: "1.200h", unit: "", label: "de conteudo" },
   { icon: TrendingUp, value: "3x", unit: "", label: "por semana" },
   { icon: BookOpen, value: "19h", unit: "às 22h", label: "horário das aulas" },
 ];

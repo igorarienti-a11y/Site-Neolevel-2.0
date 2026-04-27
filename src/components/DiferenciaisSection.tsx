@@ -8,9 +8,9 @@ import { Tilt3D } from "./Tilt3D";
 const diferenciais = [
   {
     icon: Users,
-    title: "Mentoria Executiva",
+    title: "Mentorias",
     description:
-      "Aprenda com mentores e fundadores de grandes empresas e especialistas em M&A e IA.",
+      "Aprenda com nossos Neomentores, todos empreendedores, fundadores ou líderes empresariais em suas operações.",
     span: "md:col-span-2",
     featured: false,
   },
@@ -18,39 +18,39 @@ const diferenciais = [
     icon: Network,
     title: "Networking de Alto Nível",
     description:
-      "Conecte-se com uma rede seleta de sucessores e líderes de Santa Catarina.",
+      "Conecte-se a uma rede líderes empreendedores e potenciais sucessores das mais relevantes empresas de SC.",
     span: "md:col-span-1",
     featured: false,
   },
   {
     icon: Building2,
-    title: "Imersão no Mercado",
+    title: "Conexão com o Mercado",
     description:
-      "Visitas técnicas e acesso às estratégias e processos das maiores indústrias e corporações.",
+      "Visitas técnicas e acesso exclusivo às estratégias vencedoras de grandes players regionais e nacionais.",
     span: "md:col-span-1",
     featured: false,
   },
   {
     icon: Zap,
-    title: "Metodologia Hands-on",
+    title: "Metodologia Hands On",
     description:
-      "Aplique estratégias reais no seu projeto com acompanhamento sênior.",
+      "Aplique estratégias diferenciadas no seu projeto com acompanhamento e supervisão dos Neomentores.",
     span: "md:col-span-1",
     featured: false,
   },
   {
     icon: Rocket,
-    title: "Aceleração de Projetos",
+    title: "Aceleração de Negócios",
     description:
-      "Os melhores projetos aprovados pela banca recebem até US$ 5.000 em venture capital.",
+      "Os projetos com as melhores avaliação em banca serão investidos em até US$ 5 mil em venture capital.",
     span: "md:col-span-1",
     featured: true,
   },
   {
     icon: Award,
-    title: "Estrutura de Excelência",
+    title: "Excelência FIESC",
     description:
-      "Acesso às estruturas de alto nível da FIESC — referência em excelência industrial.",
+      "Conectado ao maior ecossistema de inovação e produção industrial do Sul, a Academia Fiesc é um espaço planejado para ensinar nossa nova geração de líderes.",
     span: "md:col-span-2",
     featured: false,
   },
@@ -114,7 +114,7 @@ export function DiferenciaisSection() {
           className="text-4xl md:text-5xl font-bold text-white mb-5"
           style={{ fontFamily: "Sora, sans-serif" } as React.CSSProperties}
         >
-          Formação de Elite
+          Formação de alta performance
         </motion.h2>
 
         <motion.p
@@ -123,9 +123,7 @@ export function DiferenciaisSection() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="text-[#D9D9D9] text-lg max-w-2xl mb-14 leading-relaxed"
         >
-          O Neolevel rompe com o modelo de faculdade tradicional. Unimos a
-          excelência da estrutura FIESC a um ensino prático focado em ROI,
-          escala e liderança.
+          O NEOLEVEL rompe com o modelo tradicional de educação. Conectamos a estrutura e o networking de excelência da Academia FIESC a um ensino prático focado em ROI, escala e liderança.
         </motion.p>
 
         <div >
@@ -169,7 +167,7 @@ export function DiferenciaisSection() {
                           style={{ background: "rgba(6,249,250,0.12)", color: "#06F9FA" }}
                         >
                           <span className="w-1.5 h-1.5 rounded-full bg-[#06F9FA]" />
-                          Até US$ 5.000 em venture capital
+                          Até US$ 5 mil em venture capital
                         </div>
                       )}
                     </div>

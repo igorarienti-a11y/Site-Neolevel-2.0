@@ -90,7 +90,7 @@ export function ExclusividadeSection() {
                 filter: "drop-shadow(0 0 40px rgba(6,249,250,0.4))",
               }}
             >
-              20
+              25
             </div>
             <div className="text-xl font-semibold text-[#D9D9D9] -mt-4" style={{ fontFamily: "Sora, sans-serif" }}>
               vagas por turma

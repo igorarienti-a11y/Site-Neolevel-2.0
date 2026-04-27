@@ -5,9 +5,9 @@ import { motion, useInView, AnimatePresence } from "framer-motion";
 import { Play, X } from "lucide-react";
 
 const testimonials = [
-  { vimeoId: "1186110302", name: "Ana Souza", role: "Grupo Khronos", thumbPosition: "center 20%" },
-  { vimeoId: "1186110324", name: "Eduarda", role: "Decoração Náutica", thumbPosition: "center 15%" },
-  { vimeoId: "1186110332", name: "Yasmin", role: "Empreendedora", thumbPosition: "center 20%" },
+  { vimeoId: "1186110302", name: "Ana Souza", role: "Neoleader", thumbPosition: "center 20%" },
+  { vimeoId: "1186110324", name: "Eduarda", role: "Neoleader", thumbPosition: "center 15%" },
+  { vimeoId: "1186110332", name: "Yasmin", role: "Neoleader", thumbPosition: "center 20%" },
 ];
 
 function useVimeoThumb(vimeoId: string) {

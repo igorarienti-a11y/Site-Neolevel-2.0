@@ -9,7 +9,7 @@ const HeroOrb = dynamic(() => import("./HeroOrb").then((m) => ({ default: m.Hero
   ssr: false,
 });
 
-const headline = "A próxima geração de líderes está sendo formada aqui!";
+const headline = "A próxima geração de líderes está sendo formada aqui";
 const words = headline.split(" ");
 
 export function HeroSection() {
@@ -83,8 +83,7 @@ export function HeroSection() {
             transition={{ duration: 0.7, delay: 1.2, ease: "easeOut" }}
             className="text-[#D9D9D9] text-sm sm:text-base leading-relaxed max-w-md"
           >
-            Business School exclusiva para jovens empreendedores e sucessores que
-            buscam escala, gestão de alta performance e networking de elite.
+            Business School exclusiva para jovens que querem empreender, liderar ou mesmo suceder a gestão familiar, em negócios de alta performance.
           </motion.p>
 
           <motion.div
@@ -105,7 +104,7 @@ export function HeroSection() {
                 (e.currentTarget as HTMLAnchorElement).style.boxShadow = "none";
               }}
             >
-              Inicie sua formação agora
+              Inicie sua jornada agora
               <ArrowRight size={16} />
             </a>
 
@@ -126,8 +125,8 @@ export function HeroSection() {
           >
             {[
               { value: "17–30", label: "anos" },
-              { value: "20", label: "vagas por turma" },
-              { value: "960h", label: "por ano" },
+              { value: "25", label: "vagas por turma" },
+              { value: "1.200h", label: "de conteudo" },
             ].map((stat, i) => (
               <motion.div
                 key={stat.label}
