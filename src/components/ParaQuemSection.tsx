@@ -23,7 +23,7 @@ const personas = [
     body: "Transforme ideias em empresas lucrativas com método. Valide seu modelo de negócio, conquiste o mercado e aprenda com quem já construiu ecossistemas empresariais de sucesso.",
     cta: "Quero construir meu negócio",
     delay: 0.15,
-    photo: "/stock/founder.jpg",
+    photo: "/stock/founder.jpeg",
     photoPosition: "center 20%",
   },
 ];
