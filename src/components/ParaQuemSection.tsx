@@ -13,7 +13,8 @@ const personas = [
     body: "Prepare-se para honrar e expandir o patrimônio familiar com visão estratégica e governança moderna. Herança vem com expectativas — mas não vem com manual de instruções. O Neolevel entrega o método.",
     cta: "Quero preparar meu legado",
     delay: 0,
-    photo: "/stock/herdeiro.jpg",
+    photo: "/stock/herdeiro.jpeg",
+    photoPosition: "center 25%",
   },
   {
     icon: Lightbulb,
@@ -23,6 +24,7 @@ const personas = [
     cta: "Quero construir meu negócio",
     delay: 0.15,
     photo: "/stock/founder.jpg",
+    photoPosition: "center 20%",
   },
 ];
 
@@ -91,7 +93,8 @@ export function ParaQuemSection() {
                     <img
                       src={p.photo}
                       alt={p.title}
-                      className="w-full h-full object-cover object-center"
+                      className="w-full h-full object-cover"
+                      style={{ objectPosition: p.photoPosition ?? "center" }}
                       loading="lazy"
                     />
                     <div

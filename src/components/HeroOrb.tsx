@@ -5,13 +5,12 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
 const PHOTO_URLS = [
-  "/avatars/10.jpg", "/avatars/11.jpg", "/avatars/12.jpg", "/avatars/13.jpg",
-  "/avatars/14.jpg", "/avatars/15.jpg", "/avatars/16.jpg", "/avatars/21.jpg",
-  "/avatars/23.jpg", "/avatars/26.jpg", "/avatars/3.jpg",  "/avatars/5.jpg",
-  "/avatars/7.jpg",  "/avatars/8.jpg",  "/avatars/9.jpg",  "/avatars/m1.jpg",
-  "/avatars/m10.jpg","/avatars/m12.jpg","/avatars/m14.jpg","/avatars/m4.jpg",
-  "/avatars/m5.jpg", "/avatars/m6.jpg", "/avatars/m7.jpg", "/avatars/m9.jpg",
-  "/avatars/w2.jpg", "/avatars/w4.jpg", "/avatars/w5.jpg", "/avatars/w8.jpg",
+  "/avatars/neo1.jpg",  "/avatars/neo2.jpg",  "/avatars/neo3.jpg",  "/avatars/neo4.jpg",
+  "/avatars/neo5.jpg",  "/avatars/neo6.jpg",  "/avatars/neo7.jpg",  "/avatars/neo8.jpg",
+  "/avatars/neo9.jpg",  "/avatars/neo10.jpg", "/avatars/neo11.jpg", "/avatars/neo12.jpg",
+  "/avatars/neo13.jpg", "/avatars/neo14.jpg", "/avatars/neo15.jpg", "/avatars/neo16.jpg",
+  "/avatars/neo17.jpg", "/avatars/neo18.jpg", "/avatars/neo19.jpg", "/avatars/neo20.jpg",
+  "/avatars/neo21.jpg", "/avatars/neo22.jpg", "/avatars/neo23.jpg",
 ];
 
 interface NodeDef {
