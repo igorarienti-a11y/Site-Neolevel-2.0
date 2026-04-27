@@ -155,7 +155,7 @@ export function MentoresSection() {
               (e.currentTarget as HTMLAnchorElement).style.boxShadow = "none";
             }}
           >
-            Aprender com esses mentores
+            Aprender com esses NEOMENTORES
             <ArrowRight size={16} />
           </a>
         </motion.div>
