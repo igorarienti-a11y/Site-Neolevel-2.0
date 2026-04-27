@@ -10,8 +10,8 @@ const PHOTO_URLS = [
   "/avatars/neo9.jpg",  "/avatars/neo10.jpg", "/avatars/neo11.jpg", "/avatars/neo12.jpg",
   "/avatars/neo13.jpg", "/avatars/neo14.jpg", "/avatars/neo15.jpg", "/avatars/neo16.jpg",
   "/avatars/neo17.jpg", "/avatars/neo18.jpg", "/avatars/neo19.jpg", "/avatars/neo20.jpg",
-  "/avatars/neo21.jpg", "/avatars/neo22.jpg", "/avatars/neo23.jpg",
-  "/avatars/neo24.jpg", "/avatars/neo25.jpg", "/avatars/neo26.jpg",
+  "/avatars/neo21.jpg", "/avatars/neo22.jpg", "/avatars/neo23.jpg", "/avatars/neo24.jpg",
+  "/avatars/neo25.jpg", "/avatars/neo26.jpg", "/avatars/neo27.jpg", "/avatars/neo28.jpg",
 ];
 
 interface NodeDef {
