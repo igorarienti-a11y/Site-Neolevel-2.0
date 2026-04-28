@@ -12,26 +12,125 @@ const estagios = [
   "Sou sucessor(a) de empresa familiar",
 ];
 
+// ── Browser tracking helpers ──────────────────────────────────────────────────
+
+function getCookie(name: string): string {
+  const match = document.cookie.match(new RegExp("(^| )" + name + "=([^;]+)"));
+  return match ? decodeURIComponent(match[2]) : "";
+}
+
+function generateEventId(): string {
+  return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (c) => {
+    const r = (Math.random() * 16) | 0;
+    return (c === "x" ? r : (r & 0x3) | 0x8).toString(16);
+  });
+}
+
+function getUtms(): Record<string, string> {
+  const params = new URLSearchParams(window.location.search);
+  const keys = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"];
+  const utms: Record<string, string> = {};
+  keys.forEach((k) => { if (params.get(k)) utms[k] = params.get(k)!; });
+  if (Object.keys(utms).length) sessionStorage.setItem("_utms", JSON.stringify(utms));
+  const stored = sessionStorage.getItem("_utms");
+  return stored ? JSON.parse(stored) : {};
+}
+
+function getClickIds(): Record<string, string> {
+  const params = new URLSearchParams(window.location.search);
+  const clickKeys = ["fbclid", "gclid", "ttclid", "msclkid", "gbraid", "wbraid"];
+  const ids: Record<string, string> = {};
+  clickKeys.forEach((k) => { if (params.get(k)) ids[k] = params.get(k)!; });
+  if (Object.keys(ids).length) sessionStorage.setItem("_clickids", JSON.stringify(ids));
+  const stored = sessionStorage.getItem("_clickids");
+  return stored ? JSON.parse(stored) : {};
+}
+
+function getBrowserData(fullName: string) {
+  const clickIds = getClickIds();
+  const fbclid = clickIds.fbclid || "";
+  let fbc = getCookie("_fbc");
+  if (!fbc && fbclid) fbc = `fb.1.${Date.now()}.${fbclid}`;
+  const nameParts = fullName.trim().split(/\s+/);
+  return {
+    event_id: generateEventId(),
+    first_name: nameParts[0] || "",
+    last_name: nameParts.slice(1).join(" ") || "",
+    fbp: getCookie("_fbp"),
+    fbc,
+    fbclid,
+    gclid: clickIds.gclid || "",
+    gbraid: clickIds.gbraid || "",
+    wbraid: clickIds.wbraid || "",
+    ttclid: clickIds.ttclid || "",
+    msclkid: clickIds.msclkid || "",
+    page_url: window.location.href,
+    referrer: document.referrer,
+    user_agent: navigator.userAgent,
+    language: navigator.language,
+    screen: `${window.screen.width}x${window.screen.height}`,
+    timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+    utms: getUtms(),
+  };
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+
 export function InscricaoSection() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
   const [loading, setLoading] = useState(false);
   const [sent, setSent] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [nome, setNome] = useState("");
+  const [email, setEmail] = useState("");
+  const [cidade, setCidade] = useState("");
+  const [telefone, setTelefone] = useState("");
+  const [idade, setIdade] = useState("");
+  const [estagio, setEstagio] = useState("");
+  const [mensagem, setMensagem] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
+    setError("");
+
+    try {
+      const browser = getBrowserData(nome);
+
+      await fetch("/api/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: nome,
+          email,
+          phone: telefone,
+          cidade,
+          idade,
+          estagio,
+          message: mensagem,
+          ...browser,
+        }),
+      });
+
+      // Dispara Lead no pixel do browser (deduplicado com CAPI via event_id)
+      if (typeof window !== "undefined" && typeof (window as any).fbq === "function") {
+        (window as any).fbq("track", "Lead", {}, { eventID: browser.event_id });
+      }
+
       setSent(true);
-    }, 1500);
+    } catch {
+      setError("Erro ao enviar. Tente novamente.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const inputClass =
     "w-full bg-[#0E1A2B] border border-white/10 rounded-xl px-4 py-3 text-white text-sm placeholder:text-white/30 focus:outline-none focus:border-[#06F9FA]/50 focus:ring-1 focus:ring-[#06F9FA]/30 transition-all duration-200";
 
-  const labelClass =
-    "block text-sm font-medium text-[#D9D9D9] mb-2";
+  const labelClass = "block text-sm font-medium text-[#D9D9D9] mb-2";
 
   return (
     <section
@@ -110,6 +209,8 @@ export function InscricaoSection() {
                   required
                   placeholder="Digite seu nome completo"
                   className={inputClass}
+                  value={nome}
+                  onChange={(e) => setNome(e.target.value)}
                 />
               </div>
 
@@ -123,6 +224,8 @@ export function InscricaoSection() {
                     required
                     placeholder="seu@email.com"
                     className={inputClass}
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
                 <div>
@@ -134,6 +237,8 @@ export function InscricaoSection() {
                     required
                     placeholder="Sua cidade"
                     className={inputClass}
+                    value={cidade}
+                    onChange={(e) => setCidade(e.target.value)}
                   />
                 </div>
               </div>
@@ -148,6 +253,8 @@ export function InscricaoSection() {
                     required
                     placeholder="(00) 00000-0000"
                     className={inputClass}
+                    value={telefone}
+                    onChange={(e) => setTelefone(e.target.value)}
                   />
                 </div>
                 <div>
@@ -161,6 +268,8 @@ export function InscricaoSection() {
                     max={30}
                     placeholder="Ex: 22"
                     className={inputClass}
+                    value={idade}
+                    onChange={(e) => setIdade(e.target.value)}
                   />
                 </div>
               </div>
@@ -170,7 +279,12 @@ export function InscricaoSection() {
                   Em que estágio da sua jornada empreendedora você está hoje?{" "}
                   <span style={{ color: "#06F9FA" }}>*</span>
                 </label>
-                <select required className={inputClass} defaultValue="">
+                <select
+                  required
+                  className={inputClass}
+                  value={estagio}
+                  onChange={(e) => setEstagio(e.target.value)}
+                >
                   <option value="" disabled style={{ color: "rgba(255,255,255,0.3)", background: "#0E1A2B" }}>
                     Selecione
                   </option>
@@ -190,8 +304,14 @@ export function InscricaoSection() {
                   placeholder="Conte-nos mais sobre você ou sua ideia..."
                   className={inputClass}
                   style={{ resize: "none" }}
+                  value={mensagem}
+                  onChange={(e) => setMensagem(e.target.value)}
                 />
               </div>
+
+              {error && (
+                <p className="text-red-400 text-sm text-center">{error}</p>
+              )}
 
               <button
                 type="submit"
