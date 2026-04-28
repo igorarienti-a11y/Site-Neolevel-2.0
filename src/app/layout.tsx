@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import "./globals.css";
 import { SmoothScroll } from "@/components/SmoothScroll";
+import { PageviewBeacon } from "@/components/PageviewBeacon";
 
 export const metadata: Metadata = {
   title: "Neolevel | Business School para Jovens empreendedores e sucessores",
@@ -57,6 +58,7 @@ export default function RootLayout({
             </noscript>
           </>
         )}
+        <PageviewBeacon />
         <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>
