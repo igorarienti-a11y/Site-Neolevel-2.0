@@ -99,7 +99,7 @@ export function InscricaoSection() {
     try {
       const browser = getBrowserData(nome);
 
-      await fetch("/api/leads", {
+      const res = await fetch("/api/leads", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -114,14 +114,19 @@ export function InscricaoSection() {
         }),
       });
 
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || `HTTP ${res.status}`);
+      }
+
       // Dispara Lead no pixel do browser (deduplicado com CAPI via event_id)
       if (typeof window !== "undefined" && typeof (window as any).fbq === "function") {
         (window as any).fbq("track", "Lead", {}, { eventID: browser.event_id });
       }
 
       setSent(true);
-    } catch {
-      setError("Erro ao enviar. Tente novamente.");
+    } catch (err: any) {
+      setError(err.message || "Erro ao enviar. Tente novamente.");
     } finally {
       setLoading(false);
     }
