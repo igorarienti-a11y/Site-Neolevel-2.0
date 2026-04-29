@@ -39,7 +39,7 @@ export function HeroSection() {
       />
 
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
-        <div className="flex flex-col items-start gap-4 md:gap-5 w-full md:max-w-[52%]">
+        <div className="flex flex-col items-start gap-3 lg:gap-4 xl:gap-5 w-full md:max-w-[52%]">
 
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -60,7 +60,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
-            className="text-[1.9rem] sm:text-[2.6rem] md:text-[3rem] lg:text-[3.6rem] font-bold leading-[1.15]"
+            className="text-[1.9rem] sm:text-[2.2rem] md:text-[2.5rem] lg:text-[2.9rem] xl:text-[3.4rem] 2xl:text-[3.8rem] font-bold leading-[1.15]"
             style={{ fontFamily: "Sora, sans-serif" }}
           >
             {words.map((word, i) => {
@@ -121,7 +121,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 1.9 }}
-            className="flex items-center justify-start gap-6 sm:gap-16 flex-wrap mt-8 w-full"
+            className="flex items-center justify-start gap-6 sm:gap-16 flex-wrap mt-3 lg:mt-5 xl:mt-8 w-full"
           >
             {[
               { value: "17–30", label: "anos" },
