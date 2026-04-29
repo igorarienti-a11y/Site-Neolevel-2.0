@@ -44,13 +44,23 @@ export function ScrollRibbon() {
       p1.style.strokeDasharray = `${len1}`;
       p1.style.strokeDashoffset = `${len1}`;
 
+      let rafId = 0;
+      let lastScrollY = -1;
+
       const onScroll = () => {
-        const totalH = document.documentElement.scrollHeight;
-        const footerElScroll = document.querySelector("footer");
-        const footerHScroll = footerElScroll ? footerElScroll.offsetHeight : 0;
-        const max = totalH - footerHScroll - window.innerHeight;
-        const progress = max > 0 ? Math.min(1, window.scrollY / max) : 0;
-        p1.style.strokeDashoffset = `${len1 * (1 - progress)}`;
+        if (rafId) return;
+        rafId = requestAnimationFrame(() => {
+          rafId = 0;
+          const sy = window.scrollY;
+          if (sy === lastScrollY) return;
+          lastScrollY = sy;
+          const totalH = document.documentElement.scrollHeight;
+          const footerElScroll = document.querySelector("footer");
+          const footerHScroll = footerElScroll ? footerElScroll.offsetHeight : 0;
+          const max = totalH - footerHScroll - window.innerHeight;
+          const progress = max > 0 ? Math.min(1, sy / max) : 0;
+          p1.style.strokeDashoffset = `${len1 * (1 - progress)}`;
+        });
       };
 
       window.addEventListener("scroll", onScroll, { passive: true });
@@ -97,26 +107,20 @@ export function ScrollRibbon() {
         height: "100%",
         pointerEvents: "none",
         zIndex: 0,
+        willChange: "transform",
       }}
     >
-      <defs>
-        <filter id="ribbon-glow">
-          <feGaussianBlur stdDeviation="3" result="blur" />
-          <feMerge>
-            <feMergeNode in="blur" />
-            <feMergeNode in="SourceGraphic" />
-          </feMerge>
-        </filter>
-      </defs>
-
       <path
         ref={path1Ref}
         fill="none"
         stroke="#06F9FA"
         strokeWidth="4"
         strokeLinecap="round"
-        filter="url(#ribbon-glow)"
-        style={{ opacity: 0.55 }}
+        style={{
+          opacity: 0.55,
+          filter: "drop-shadow(0 0 4px #06F9FA)",
+          willChange: "stroke-dashoffset",
+        }}
       />
     </svg>
   );
