@@ -11,8 +11,9 @@ const mentores = [
   { name: "Claudio Grando", role: "Fundador e presidente do conselho administrativo do grupo AUDACES", tema: "Gestão e visão de mercado global", photo: "/mentor-claudio.png" },
   { name: "Luiz Fernando Marca", role: "Criador do Sistema Orbis e consultor de estratégia empresarial", tema: "Estruturação para crescimento e sucessão familiar", photo: "/mentor-luiz-fernando.jpg" },
   { name: "Patricia Santos", role: "Especialista em felicidade, gestão emocional e experiência do cliente", tema: "Excelência e mentoria corporativa padrão Disney", photo: "/mentor-patricia.jpg" },
-  { name: "Norberto Dias", role: "Empreendedor e especialista em M&A", tema: "Especialista em M&A e resultados sênior", photo: "/mentor-norberto.png" },
-  { name: "Luiz Henrique Herling", role: "CEO da SEL Logística e estrategista financeiro", tema: "Estratégia financeira e tomada de decisão", photo: "/mentor-luiz-henrique.jpg" },
+  { name: "Norberto Dias", role: "Empreendedor do setor de tecnologia, com 2 M&A, 30 anos C-level e analista de projetos de inovação", tema: "Especialista em M&A e resultados sênior", photo: "/mentor-norberto.png" },
+  { name: "Luiz Henrique Herling", role: "Fundador e CEO da SEL Logística e estrategista financeiro", tema: "Estratégia financeira e tomada de decisão", photo: "/mentor-luiz-henrique.jpg" },
+  { name: "Cristiano Chaussard", role: "Fundador e CEO da Flexy e presidente da Associação Brasileira de Comércio Eletrônico", tema: "Comércio eletrônico e empreendedorismo", photo: "/mentor-cristiano.jpg" },
 ];
 
 const containerVariants: Variants = {

@@ -10,7 +10,7 @@ const personas = [
     icon: Building,
     tag: "Herdeiros e Sucessores",
     title: "Herdeiros e Sucessores",
-    body: "Prepare-se para honrar e expandir o patrimônio familiar com visão estratégica e governança moderna. Herança vem com expectativas — mas não vem com manual de instruções. O Neolevel entrega o método.",
+    body: "Prepare-se para honrar e expandir o patrimônio familiar com visão estratégica e governança moderna. Herança vem com expectativas, mas não vem com manual de instruções. NEOLEVEL entrega o método.",
     cta: "Quero preparar meu legado",
     delay: 0,
     photo: "/stock/herdeiro.jpeg",
@@ -62,11 +62,10 @@ export function ParaQuemSection() {
             className="text-4xl md:text-5xl font-bold text-white mt-3 mb-4"
             style={{ fontFamily: "Sora, sans-serif" }}
           >
-            Para quem é o Neolevel?
+            Para quem é o NEOLEVEL?
           </h2>
           <p className="text-[#D9D9D9] text-lg max-w-xl mx-auto">
-            Aprenda com quem já chegou onde você quer ir e encurte sua curva de
-            aprendizado em anos.
+            Aprenda com quem já chegou onde você quer ir. Ganhe tempo e reduza sua curva de aprendizado.
           </p>
         </motion.div>
 

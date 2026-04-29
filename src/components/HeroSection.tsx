@@ -126,7 +126,7 @@ export function HeroSection() {
             {[
               { value: "17–30", label: "anos" },
               { value: "25", label: "vagas por turma" },
-              { value: "1.200h", label: "de conteudo" },
+              { value: "1.200", label: "horas/aula" },
             ].map((stat, i) => (
               <motion.div
                 key={stat.label}

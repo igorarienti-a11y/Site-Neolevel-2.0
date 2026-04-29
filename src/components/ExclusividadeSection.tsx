@@ -66,7 +66,7 @@ export function ExclusividadeSection() {
               <span style={{ color: "#06F9FA" }}>Melhores</span>
             </h2>
             <p className="text-[#D9D9D9] leading-relaxed mb-4">
-              O Neolevel não é uma matrícula, é uma conquista. Limitamos nossas
+              O NEOLEVEL não é uma simples formação, é uma conquista. Limitamos nossas
               turmas para garantir profundidade nas mentorias e qualidade nas
               conexões.
             </p>
@@ -109,7 +109,7 @@ export function ExclusividadeSection() {
             className="text-2xl font-bold text-white mb-1"
             style={{ fontFamily: "Sora, sans-serif" }}
           >
-            O Processo Seletivo
+            A Jornada Ingresso
           </h3>
           <p className="text-[#D9D9D9]/60 text-sm">3 etapas para entrar na próxima turma</p>
         </motion.div>

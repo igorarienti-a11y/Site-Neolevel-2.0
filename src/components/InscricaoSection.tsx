@@ -162,7 +162,7 @@ export function InscricaoSection() {
             className="text-xs font-semibold tracking-[0.2em] uppercase"
             style={{ color: "#06F9FA", fontFamily: "Sora, sans-serif" }}
           >
-            Processo Seletivo
+            Jornada de Ingresso
           </span>
           <h2
             className="text-3xl md:text-4xl font-bold text-white mt-3"

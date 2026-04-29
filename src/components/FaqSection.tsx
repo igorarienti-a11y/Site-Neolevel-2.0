@@ -7,19 +7,19 @@ import { Plus, Minus } from "lucide-react";
 const faqs = [
   {
     q: "Preciso já ter uma empresa?",
-    a: "Não. O Neolevel serve para quem quer criar, assumir ou acelerar um negócio. Atendemos herdeiros que ainda não assumiram a empresa, jovens com ideias de negócio e primeiros empreendedores que estão começando do zero.",
+    a: "Não. O Programa NEOLEVEL foi especialmente desenvolvido para quem quer criar, assumir ou acelerar um negócio. Metodologia de excelência para herdeiros que ainda não assumiram a empresa, jovens com ideias de negócio e primeiros empreendedores começando do zero.",
   },
   {
     q: "Qual o diferencial da FIESC?",
-    a: "Você terá acesso à estrutura da Academia de Negócios FIESC, referência em excelência industrial de Santa Catarina. Isso inclui infraestrutura de alto nível, conexões com as maiores indústrias do estado e um network que poucos têm acesso.",
+    a: "Você terá acesso à inovação, conexões de alto nível e toda a estrutura da Academia FIESC de Negócios, referência em formação de lideranças para o setor produtivo em Santa Catarina.",
   },
   {
     q: "O curso é reconhecido?",
-    a: "O Neolevel é uma formação de elite focada em resultados práticos de mercado. Diferente de uma faculdade tradicional, o valor está na metodologia hands-on, na qualidade dos mentores e nas conexões que você constrói ao longo dos 2 anos.",
+    a: "O NEOLEVEL é uma formação de elite focada em resultados práticos de aprendizagem. É um curso livre e seu valor está na metodologia hands-on, na expertise de seus mentores e nas conexões que você vai construir ao longo dos 2 anos convivendo com os melhores.",
   },
   {
     q: "Qual a duração do programa Neolevel?",
-    a: "O programa Neolevel é estruturado para oferecer uma formação completa em empreendedorismo, combinando teoria e prática. A duração específica pode variar conforme a turma. Entre em contato para saber mais sobre o calendário atual.",
+    a: "O Programa NEOLEVEL é estruturado para uma formação de 2 anos de ensino teórico e prático. Entre em contato para saber mais sobre o calendário atual.",
   },
   {
     q: "Quais os requisitos para inscrição?",
@@ -35,7 +35,7 @@ const faqs = [
   },
   {
     q: "Há bolsas ou descontos disponíveis?",
-    a: "O Neolevel oferece diferentes condições de pagamento e possibilidades de bolsas para jovens talentos. Entre em contato com nossa equipe para conhecer as opções disponíveis e encontrar a melhor forma de investir no seu futuro.",
+    a: "O Programa NEOLEVEL oferece diferentes condições de pagamento e possibilidades para jovens talentos. Entre em contato com nosso time comercial para conhecer as opções disponíveis e encontre a melhor forma de investir no seu futuro.",
   },
   {
     q: "Como posso entrar em contato?",
