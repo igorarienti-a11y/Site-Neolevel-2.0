@@ -9,13 +9,11 @@ import { ExclusividadeSection } from "@/components/ExclusividadeSection";
 import { FaqSection } from "@/components/FaqSection";
 import { ProvasSocialSection } from "@/components/ProvasSocialSection";
 import { Footer } from "@/components/Footer";
-import { ScrollRibbon } from "@/components/ScrollRibbon";
 import { InscricaoSection } from "@/components/InscricaoSection";
 
 export default function Home() {
   return (
     <main style={{ position: "relative" }}>
-      <ScrollRibbon />
       <Navbar />
       <HeroSection />
       <DiferenciaisSection />

@@ -11,8 +11,15 @@ export function ScrollRibbon() {
     const p1 = path1Ref.current;
     if (!svg || !p1) return;
 
-    // Too heavy on mobile (full-page SVG + glow filter)
     if (window.innerWidth < 768) return;
+
+    let len1 = 0;
+
+    const getMax = () => {
+      const footerEl = document.querySelector("footer");
+      const footerH = footerEl ? footerEl.offsetHeight : 0;
+      return document.documentElement.scrollHeight - footerH - window.innerHeight;
+    };
 
     const build = () => {
       const W = window.innerWidth;
@@ -39,58 +46,53 @@ export function ScrollRibbon() {
         `C ${a} ${seg * 8.4} ${W * 0.5} ${seg * 8.8} ${W * 0.5} ${H}`;
 
       p1.setAttribute("d", d1);
-
-      const len1 = p1.getTotalLength();
+      len1 = p1.getTotalLength();
       p1.style.strokeDasharray = `${len1}`;
       p1.style.strokeDashoffset = `${len1}`;
-
-      let rafId = 0;
-      let lastScrollY = -1;
-
-      const onScroll = () => {
-        if (rafId) return;
-        rafId = requestAnimationFrame(() => {
-          rafId = 0;
-          const sy = window.scrollY;
-          if (sy === lastScrollY) return;
-          lastScrollY = sy;
-          const totalH = document.documentElement.scrollHeight;
-          const footerElScroll = document.querySelector("footer");
-          const footerHScroll = footerElScroll ? footerElScroll.offsetHeight : 0;
-          const max = totalH - footerHScroll - window.innerHeight;
-          const progress = max > 0 ? Math.min(1, sy / max) : 0;
-          p1.style.strokeDashoffset = `${len1 * (1 - progress)}`;
-        });
-      };
-
-      window.addEventListener("scroll", onScroll, { passive: true });
-      onScroll();
-
-      return onScroll;
     };
 
-    let cleanup: (() => void) | null = null;
-    let timer: ReturnType<typeof setTimeout>;
-
-    const init = () => {
-      const fn = build();
-      cleanup = () => window.removeEventListener("scroll", fn);
+    const onScroll = ({ scroll }: { scroll: number }) => {
+      if (len1 <= 0) return;
+      const max = getMax();
+      const progress = max > 0 ? Math.min(1, scroll / max) : 0;
+      p1.style.strokeDashoffset = `${len1 * (1 - progress)}`;
     };
 
-    timer = setTimeout(init, 150);
+    // Fallback para quando Lenis não está disponível (SSR, touch devices com Lenis desabilitado)
+    const onNativeScroll = () => {
+      if (len1 <= 0) return;
+      const max = getMax();
+      const progress = max > 0 ? Math.min(1, window.scrollY / max) : 0;
+      p1.style.strokeDashoffset = `${len1 * (1 - progress)}`;
+    };
 
+    const timer = setTimeout(() => {
+      build();
+
+      const lenis = (window as any).__lenis;
+      if (lenis) {
+        lenis.on("scroll", onScroll);
+      } else {
+        window.addEventListener("scroll", onNativeScroll, { passive: true });
+      }
+    }, 150);
+
+    let resizeTimer: ReturnType<typeof setTimeout>;
     const onResize = () => {
-      clearTimeout(timer);
-      if (cleanup) cleanup();
-      const fn = build();
-      cleanup = () => window.removeEventListener("scroll", fn);
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(build, 200);
     };
 
     window.addEventListener("resize", onResize);
 
     return () => {
       clearTimeout(timer);
-      if (cleanup) cleanup();
+      const lenis = (window as any).__lenis;
+      if (lenis) {
+        lenis.off("scroll", onScroll);
+      } else {
+        window.removeEventListener("scroll", onNativeScroll);
+      }
       window.removeEventListener("resize", onResize);
     };
   }, []);
@@ -107,7 +109,6 @@ export function ScrollRibbon() {
         height: "100%",
         pointerEvents: "none",
         zIndex: 0,
-        willChange: "transform",
       }}
     >
       <path
@@ -119,7 +120,6 @@ export function ScrollRibbon() {
         style={{
           opacity: 0.55,
           filter: "drop-shadow(0 0 4px #06F9FA)",
-          willChange: "stroke-dashoffset",
         }}
       />
     </svg>

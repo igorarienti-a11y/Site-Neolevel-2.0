@@ -30,6 +30,8 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
       easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     });
 
+    (window as any).__lenis = lenis;
+
     const handleAnchorClick = (e: MouseEvent) => {
       const anchor = (e.target as HTMLElement).closest('a[href^="#"]') as HTMLAnchorElement | null;
       if (!anchor) return;
@@ -54,6 +56,7 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
     return () => {
       cancelAnimationFrame(rafId);
       lenis?.destroy();
+      delete (window as any).__lenis;
       document.removeEventListener("click", handleAnchorClick);
     };
   }, []);
