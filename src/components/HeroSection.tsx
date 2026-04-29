@@ -113,7 +113,7 @@ export function HeroSection() {
               className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border font-semibold text-sm sm:text-base transition-all duration-200 hover:bg-white/5"
               style={{ borderColor: "rgba(255,255,255,0.15)", color: "#D9D9D9" }}
             >
-              Conhecer o programa
+              Conheça o NEOLEVEL
             </a>
           </motion.div>
 
