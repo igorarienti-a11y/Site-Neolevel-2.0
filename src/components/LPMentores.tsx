@@ -170,7 +170,7 @@ export function LPMentores() {
               (e.currentTarget as HTMLAnchorElement).style.boxShadow = "none";
             }}
           >
-            Aprender com esses mentores
+            NEOMENTORES
             <ArrowRight size={15} />
           </a>
         </motion.div>

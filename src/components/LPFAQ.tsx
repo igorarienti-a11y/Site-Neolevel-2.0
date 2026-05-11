@@ -129,35 +129,27 @@ export function LPFAQ() {
           ))}
         </div>
 
-        {/* WhatsApp escape */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.35 }}
-          className="mt-12 flex flex-col sm:flex-row items-start sm:items-center gap-4"
+          className="mt-12"
         >
-          <p className="text-[#D9D9D9]/45 text-sm">
-            Ficou com alguma dúvida? Nossa equipe responde no mesmo dia.
-          </p>
-          <div className="flex items-center gap-3 flex-wrap">
-            <a
-              href="https://wa.me/5548996690119"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-semibold text-sm transition-all duration-200 hover:-translate-y-0.5"
-              style={{ background: "rgba(6,249,250,0.08)", color: "#06F9FA", border: "1px solid rgba(6,249,250,0.18)" }}
-            >
-              WhatsApp (48) 99669-0119
-            </a>
-            <a
-              href="#inscricao"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-semibold text-sm transition-all duration-200 hover:-translate-y-0.5"
-              style={{ background: "#06F9FA", color: "#0c1828" }}
-            >
-              Ir para inscrição
-              <ArrowRight size={13} />
-            </a>
-          </div>
+          <a
+            href="#inscricao"
+            className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full font-bold text-sm transition-all duration-200 hover:scale-[1.03]"
+            style={{ background: "#06F9FA", color: "#0c1828" }}
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLAnchorElement).style.boxShadow =
+                "0 0 32px rgba(6,249,250,0.35), 0 8px 24px rgba(6,249,250,0.15)";
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLAnchorElement).style.boxShadow = "none";
+            }}
+          >
+            Garantir minha vaga agora
+            <ArrowRight size={15} />
+          </a>
         </motion.div>
 
       </div>
