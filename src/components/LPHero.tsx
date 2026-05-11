@@ -59,7 +59,7 @@ export function LPHero() {
         >
           <span className="w-1.5 h-1.5 rounded-full bg-[#06F9FA] animate-pulse shrink-0" />
           <span
-            className="text-[#06F9FA] text-xs font-semibold tracking-[0.25em] uppercase"
+            className="text-[#06F9FA] text-[11px] sm:text-xs font-semibold tracking-[0.2em] uppercase"
             style={{ fontFamily: "Sora, sans-serif" }}
           >
             NEOLEVEL × FIESC · Business School
@@ -74,7 +74,7 @@ export function LPHero() {
           className="font-bold leading-[1.05] tracking-tight"
           style={{
             fontFamily: "Sora, sans-serif",
-            fontSize: "clamp(2.4rem, 6vw, 5rem)",
+            fontSize: "clamp(2.2rem, 8vw, 5rem)",
             maxWidth: "14ch",
           }}
         >
@@ -89,8 +89,8 @@ export function LPHero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.55 }}
-          className="text-[#D9D9D9]/65 leading-relaxed mt-6"
-          style={{ fontSize: "clamp(0.95rem, 2vw, 1.1rem)", maxWidth: "48ch" }}
+          className="text-[#D9D9D9]/65 leading-relaxed mt-6 px-2"
+          style={{ fontSize: "clamp(0.9rem, 2.5vw, 1.1rem)", maxWidth: "44ch" }}
         >
           A Business School que coloca você dentro de empresas reais, ao lado de mentores que construíram o que você quer construir.
         </motion.p>
@@ -100,11 +100,11 @@ export function LPHero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.8 }}
-          className="mt-10"
+          className="mt-10 w-full max-w-xs sm:max-w-none flex justify-center"
         >
           <a
             href="#inscricao"
-            className="inline-flex items-center gap-2.5 px-8 py-4 rounded-full font-bold text-base transition-all duration-200 hover:scale-[1.03]"
+            className="inline-flex items-center justify-center gap-2.5 w-full sm:w-auto px-8 py-4 rounded-full font-bold text-base transition-all duration-200 hover:scale-[1.03]"
             style={{ background: "#06F9FA", color: "#080f1a" }}
             onMouseEnter={(e) => {
               (e.currentTarget as HTMLAnchorElement).style.boxShadow =
@@ -144,10 +144,9 @@ export function LPHero() {
           {stats.map((s, i) => (
             <div
               key={s.label + i}
-              className="flex flex-col items-center justify-center py-5 px-4 text-center"
-              style={{
-                borderRight: i < stats.length - 1 ? "1px solid rgba(6,249,250,0.08)" : "none",
-              }}
+              className={`flex flex-col items-center justify-center py-5 px-4 text-center ${
+                i % 2 === 0 ? "border-r border-[rgba(6,249,250,0.08)]" : ""
+              } ${i < 2 ? "border-b sm:border-b-0 border-[rgba(6,249,250,0.08)]" : ""} sm:border-r sm:last:border-r-0`}
             >
               <span
                 className="font-bold text-2xl"

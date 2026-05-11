@@ -25,7 +25,7 @@ export function LPProof() {
   return (
     <section
       ref={ref}
-      className="py-16 md:py-28 px-4 sm:px-6 relative overflow-hidden"
+      className="py-14 md:py-28 px-4 sm:px-6 relative overflow-hidden"
       style={{ background: "#060d17" }}
     >
       <div
@@ -39,38 +39,38 @@ export function LPProof() {
 
       <div className="max-w-4xl mx-auto">
 
-        {/* Pull quote — oversized, full width */}
+        {/* Pull quote */}
         <motion.div
           initial={{ opacity: 0, y: 32 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-16 md:mb-20"
+          className="mb-12 md:mb-20"
         >
           <span
-            className="block font-bold leading-none mb-6"
-            style={{ fontFamily: "Sora, sans-serif", fontSize: "clamp(5rem, 12vw, 10rem)", color: "rgba(6,249,250,0.08)", lineHeight: 0.8 }}
+            className="block font-bold leading-none mb-4 sm:mb-6"
+            style={{ fontFamily: "Sora, sans-serif", fontSize: "clamp(4rem, 10vw, 10rem)", color: "rgba(6,249,250,0.08)", lineHeight: 0.8 }}
             aria-hidden
           >
             "
           </span>
           <blockquote
             className="font-bold leading-[1.15] text-white"
-            style={{ fontFamily: "Sora, sans-serif", fontSize: "clamp(1.4rem, 3.5vw, 2.4rem)", maxWidth: "18ch" }}
+            style={{ fontFamily: "Sora, sans-serif", fontSize: "clamp(1.25rem, 4vw, 2.4rem)", maxWidth: "18ch" }}
           >
             A rede que você constrói aqui é o ativo que mais vai importar em 10 anos.
           </blockquote>
-          <div className="mt-5 flex items-center gap-3">
+          <div className="mt-4 sm:mt-5 flex items-center gap-3">
             <div className="w-6 h-px" style={{ background: "#06F9FA" }} />
             <span className="text-[#D9D9D9]/45 text-xs uppercase tracking-widest">Princípio NEOLEVEL</span>
           </div>
         </motion.div>
 
-        {/* Stats — horizontal inline strip */}
+        {/* Stats strip */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="flex flex-wrap gap-0 mb-16 md:mb-20"
+          className="grid grid-cols-3 mb-12 md:mb-20"
           style={{ borderTop: "1px solid rgba(6,249,250,0.08)", borderBottom: "1px solid rgba(6,249,250,0.08)" }}
         >
           {[
@@ -80,40 +80,41 @@ export function LPProof() {
           ].map((stat, i, arr) => (
             <div
               key={stat.label}
-              className="flex flex-col justify-center py-7 px-6 flex-1 min-w-[8rem]"
-              style={{ borderRight: i < arr.length - 1 ? "1px solid rgba(6,249,250,0.08)" : "none" }}
+              className={`flex flex-col justify-center py-5 sm:py-7 px-3 sm:px-6 ${
+                i < arr.length - 1 ? "border-r border-[rgba(6,249,250,0.08)]" : ""
+              }`}
             >
               <span
                 className="font-bold leading-none"
-                style={{ fontFamily: "Sora, sans-serif", fontSize: "clamp(1.8rem, 4vw, 2.8rem)", color: "#06F9FA" }}
+                style={{ fontFamily: "Sora, sans-serif", fontSize: "clamp(1.4rem, 4vw, 2.8rem)", color: "#06F9FA" }}
               >
                 {stat.value}
               </span>
-              <span className="text-[10px] uppercase tracking-widest text-[#D9D9D9]/40 mt-2 leading-snug max-w-[14ch]">
+              <span className="text-[9px] sm:text-[10px] uppercase tracking-widest text-[#D9D9D9]/40 mt-1.5 leading-snug">
                 {stat.label}
               </span>
             </div>
           ))}
         </motion.div>
 
-        {/* Testimonials — two alternating rows */}
-        <div className="flex flex-col gap-6 md:gap-0">
+        {/* Testimonials — stacked on mobile, alternating indent on desktop */}
+        <div className="flex flex-col gap-0">
           {testimonials.map((t, i) => (
             <motion.div
               key={t.name}
               initial={{ opacity: 0, y: 24 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.3 + i * 0.15 }}
-              className="py-6 md:py-8"
+              className="py-6 sm:py-8"
               style={{ borderBottom: i < testimonials.length - 1 ? "1px solid rgba(255,255,255,0.05)" : "none" }}
             >
               <p
                 className="text-[#D9D9D9]/80 leading-relaxed mb-4"
                 style={{
-                  fontSize: "clamp(1rem, 2vw, 1.15rem)",
+                  fontSize: "clamp(0.95rem, 2vw, 1.15rem)",
                   maxWidth: "56ch",
                   marginLeft: i === 1 ? "auto" : undefined,
-                  textAlign: i === 1 ? "right" : "left",
+                  textAlign: "left",
                 }}
               >
                 "{t.quote}"
@@ -134,12 +135,12 @@ export function LPProof() {
           ))}
         </div>
 
-        {/* FIESC credibility */}
+        {/* FIESC */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.5 }}
-          className="flex items-center gap-4 mt-10 pt-8"
+          className="flex flex-col sm:flex-row sm:items-center gap-4 mt-10 pt-8"
           style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}
         >
           <Image
@@ -154,7 +155,7 @@ export function LPProof() {
           </p>
           <a
             href="#inscricao"
-            className="ml-auto inline-flex items-center gap-2 text-sm font-semibold shrink-0 hover:gap-3 transition-all duration-200"
+            className="inline-flex items-center gap-2 text-sm font-semibold sm:ml-auto hover:gap-3 transition-all duration-200"
             style={{ color: "#06F9FA" }}
           >
             Quero uma vaga

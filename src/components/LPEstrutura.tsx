@@ -29,7 +29,7 @@ export function LPEstrutura() {
 
   return (
     <section
-      className="py-16 md:py-28 px-4 sm:px-6 relative overflow-hidden"
+      className="py-14 md:py-28 px-4 sm:px-6 relative overflow-hidden"
       style={{ background: "#0a1525" }}
     >
       <div
@@ -44,7 +44,7 @@ export function LPEstrutura() {
           initial={{ opacity: 0, y: 24 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="mb-14"
+          className="mb-10 md:mb-14"
         >
           <span
             className="block text-xs font-semibold tracking-[0.22em] uppercase mb-5"
@@ -54,45 +54,50 @@ export function LPEstrutura() {
           </span>
           <h2
             className="font-bold text-white leading-[1.1]"
-            style={{ fontFamily: "Sora, sans-serif", fontSize: "clamp(2rem, 5vw, 3.4rem)" }}
+            style={{ fontFamily: "Sora, sans-serif", fontSize: "clamp(1.8rem, 6vw, 3.4rem)" }}
           >
             2 anos que vão mudar{" "}
             <span style={{ color: "#06F9FA" }}>como você pensa e decide.</span>
           </h2>
         </motion.div>
 
-        {/* Two-panel: big stats left | logistics right */}
+        {/* Stats — 3-col on sm+, stacked on mobile */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.55, delay: 0.1 }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-0 mb-14 rounded-2xl overflow-hidden"
+          className="grid grid-cols-3 mb-10 md:mb-14 rounded-2xl overflow-hidden"
           style={{ border: "1px solid rgba(6,249,250,0.1)" }}
         >
           {metaStats.map((s, i) => (
             <div
               key={s.label}
-              className="flex flex-col items-center justify-center py-8 px-6 text-center"
-              style={{
-                borderRight: i < metaStats.length - 1 ? "1px solid rgba(6,249,250,0.08)" : "none",
-                background: i === 0 ? "rgba(6,249,250,0.04)" : "rgba(255,255,255,0.02)",
-              }}
+              className={`flex flex-col items-center justify-center py-6 sm:py-8 px-3 sm:px-6 text-center ${
+                i < metaStats.length - 1 ? "border-r border-[rgba(6,249,250,0.08)]" : ""
+              }`}
+              style={{ background: i === 0 ? "rgba(6,249,250,0.04)" : "rgba(255,255,255,0.02)" }}
             >
-              <div className="flex items-end gap-1 leading-none mb-1">
+              <div className="flex items-end gap-0.5 sm:gap-1 leading-none mb-1">
                 <span
                   className="font-bold"
-                  style={{ fontFamily: "Sora, sans-serif", fontSize: "clamp(2.4rem, 5vw, 3.5rem)", color: "#06F9FA" }}
+                  style={{
+                    fontFamily: "Sora, sans-serif",
+                    fontSize: "clamp(1.6rem, 5vw, 3.5rem)",
+                    color: "#06F9FA",
+                  }}
                 >
                   {s.value}
                 </span>
                 <span
-                  className="font-semibold mb-1"
-                  style={{ fontFamily: "Sora, sans-serif", fontSize: "1rem", color: "rgba(6,249,250,0.55)" }}
+                  className="font-semibold mb-0.5 sm:mb-1 text-xs sm:text-base"
+                  style={{ fontFamily: "Sora, sans-serif", color: "rgba(6,249,250,0.55)" }}
                 >
                   {s.unit}
                 </span>
               </div>
-              <span className="text-[11px] uppercase tracking-widest text-[#D9D9D9]/40">{s.label}</span>
+              <span className="text-[9px] sm:text-[11px] uppercase tracking-widest text-[#D9D9D9]/40 leading-snug">
+                {s.label}
+              </span>
             </div>
           ))}
         </motion.div>
@@ -102,7 +107,7 @@ export function LPEstrutura() {
           initial={{ opacity: 0, y: 12 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="flex flex-wrap gap-4 mb-14"
+          className="flex flex-wrap gap-x-6 gap-y-3 mb-10 md:mb-14"
         >
           {[
             ["Frequência", "3× por semana"],
@@ -130,7 +135,7 @@ export function LPEstrutura() {
             Grade do Programa
           </div>
           <div className="relative">
-            {/* Vertical line */}
+            {/* Vertical line — desktop only */}
             <div
               className="absolute left-[1.4rem] top-0 bottom-0 w-px hidden sm:block"
               style={{ background: "rgba(6,249,250,0.08)" }}
@@ -142,31 +147,34 @@ export function LPEstrutura() {
                   initial={{ opacity: 0, x: -12 }}
                   animate={listInView ? { opacity: 1, x: 0 } : {}}
                   transition={{ duration: 0.45, delay: i * 0.07 }}
-                  className="flex gap-4 sm:gap-6 py-4"
+                  className="flex gap-3 sm:gap-6 py-3.5 sm:py-4"
                   style={{ borderBottom: i < disciplinas.length - 1 ? "1px solid rgba(255,255,255,0.04)" : "none" }}
                 >
-                  {/* Timeline dot */}
+                  {/* Desktop: timeline dot */}
                   <div className="relative shrink-0 hidden sm:flex items-center justify-center w-11">
                     <div
                       className="w-2.5 h-2.5 rounded-full z-10"
-                      style={{ background: i === 0 ? "#06F9FA" : "rgba(6,249,250,0.25)", border: i === 0 ? "none" : "1px solid rgba(6,249,250,0.3)" }}
+                      style={{
+                        background: i === 0 ? "#06F9FA" : "rgba(6,249,250,0.25)",
+                        border: i === 0 ? "none" : "1px solid rgba(6,249,250,0.3)",
+                      }}
                     />
                   </div>
-                  {/* Mobile num */}
+                  {/* Mobile: number */}
                   <span
                     className="shrink-0 sm:hidden text-xs font-bold tabular-nums pt-0.5"
                     style={{ color: "rgba(6,249,250,0.35)", fontFamily: "Sora, sans-serif", width: "1.8rem" }}
                   >
                     {d.num}
                   </span>
-                  <div>
+                  <div className="flex-1 min-w-0">
                     <div
                       className="font-semibold text-white text-sm leading-snug"
                       style={{ fontFamily: "Sora, sans-serif" }}
                     >
                       {d.title}
                     </div>
-                    <div className="text-[#D9D9D9]/45 text-xs mt-1 leading-relaxed max-w-[56ch]">{d.outcome}</div>
+                    <div className="text-[#D9D9D9]/45 text-xs mt-1 leading-relaxed">{d.outcome}</div>
                   </div>
                 </motion.div>
               ))}
@@ -179,7 +187,7 @@ export function LPEstrutura() {
           initial={{ opacity: 0, y: 16 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="mt-10 rounded-2xl p-5"
+          className="mt-8 sm:mt-10 rounded-2xl p-4 sm:p-5"
           style={{ background: "rgba(6,249,250,0.04)", border: "1px solid rgba(6,249,250,0.1)" }}
         >
           <p className="text-[#D9D9D9] text-sm leading-relaxed">
@@ -196,7 +204,7 @@ export function LPEstrutura() {
         >
           <a
             href="#inscricao"
-            className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full font-bold text-sm transition-all duration-200 hover:scale-[1.03]"
+            className="inline-flex items-center justify-center gap-2.5 w-full sm:w-auto px-7 py-4 rounded-full font-bold text-sm transition-all duration-200 hover:scale-[1.03]"
             style={{ background: "#06F9FA", color: "#0a1525" }}
             onMouseEnter={(e) => {
               (e.currentTarget as HTMLAnchorElement).style.boxShadow =

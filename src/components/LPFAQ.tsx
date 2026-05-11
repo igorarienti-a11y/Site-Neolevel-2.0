@@ -43,11 +43,11 @@ function FaqItem({ q, a, index }: { q: string; a: string; index: number }) {
     >
       <button
         onClick={() => setOpen(!open)}
-        className="w-full flex items-start justify-between gap-6 py-5 text-left"
+        className="w-full flex items-start justify-between gap-4 py-5 text-left"
       >
         <span
-          className="font-semibold text-white leading-snug flex-1"
-          style={{ fontFamily: "Sora, sans-serif", fontSize: "clamp(0.9rem, 2vw, 1rem)" }}
+          className="font-semibold text-white leading-snug flex-1 text-sm sm:text-base"
+          style={{ fontFamily: "Sora, sans-serif" }}
         >
           {q}
         </span>
@@ -74,7 +74,7 @@ function FaqItem({ q, a, index }: { q: string; a: string; index: number }) {
             transition={{ duration: 0.25, ease: "easeOut" }}
             className="overflow-hidden"
           >
-            <p className="pb-5 text-[#D9D9D9]/65 text-sm leading-relaxed max-w-[60ch]">
+            <p className="pb-5 text-[#D9D9D9]/65 text-sm leading-relaxed">
               {a}
             </p>
           </motion.div>
@@ -90,7 +90,7 @@ export function LPFAQ() {
 
   return (
     <section
-      className="py-16 md:py-28 px-4 sm:px-6 relative overflow-hidden"
+      className="py-14 md:py-28 px-4 sm:px-6 relative overflow-hidden"
       style={{ background: "#0c1828" }}
     >
       <div
@@ -104,7 +104,7 @@ export function LPFAQ() {
           initial={{ opacity: 0, y: 24 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="mb-14"
+          className="mb-10 md:mb-14"
         >
           <span
             className="block text-xs font-semibold tracking-[0.22em] uppercase mb-5"
@@ -114,7 +114,7 @@ export function LPFAQ() {
           </span>
           <h2
             className="font-bold text-white leading-[1.1]"
-            style={{ fontFamily: "Sora, sans-serif", fontSize: "clamp(2rem, 5vw, 3.4rem)" }}
+            style={{ fontFamily: "Sora, sans-serif", fontSize: "clamp(1.8rem, 6vw, 3.4rem)" }}
           >
             Respostas diretas
             <br />
@@ -122,7 +122,6 @@ export function LPFAQ() {
           </h2>
         </motion.div>
 
-        {/* Accordion — borderless, rule-separated */}
         <div style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
           {faqs.map((faq, i) => (
             <FaqItem key={faq.q} q={faq.q} a={faq.a} index={i} />
@@ -133,11 +132,11 @@ export function LPFAQ() {
           initial={{ opacity: 0, y: 16 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.35 }}
-          className="mt-12"
+          className="mt-10"
         >
           <a
             href="#inscricao"
-            className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full font-bold text-sm transition-all duration-200 hover:scale-[1.03]"
+            className="inline-flex items-center justify-center gap-2.5 w-full sm:w-auto px-7 py-4 rounded-full font-bold text-sm transition-all duration-200 hover:scale-[1.03]"
             style={{ background: "#06F9FA", color: "#0c1828" }}
             onMouseEnter={(e) => {
               (e.currentTarget as HTMLAnchorElement).style.boxShadow =

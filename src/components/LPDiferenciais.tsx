@@ -43,7 +43,7 @@ export function LPDiferenciais() {
 
   return (
     <section
-      className="py-16 md:py-28 px-4 sm:px-6 relative overflow-hidden"
+      className="py-14 md:py-28 px-4 sm:px-6 relative overflow-hidden"
       style={{ background: "#0c1828" }}
     >
       <div
@@ -61,7 +61,7 @@ export function LPDiferenciais() {
           initial={{ opacity: 0, y: 24 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="mb-14"
+          className="mb-10 md:mb-14"
         >
           <span
             className="block text-xs font-semibold tracking-[0.22em] uppercase mb-5"
@@ -71,7 +71,7 @@ export function LPDiferenciais() {
           </span>
           <h2
             className="font-bold text-white leading-[1.1]"
-            style={{ fontFamily: "Sora, sans-serif", fontSize: "clamp(2rem, 5vw, 3.4rem)" }}
+            style={{ fontFamily: "Sora, sans-serif", fontSize: "clamp(1.8rem, 6vw, 3.4rem)" }}
           >
             Cinco coisas que nenhuma
             <br />
@@ -87,37 +87,37 @@ export function LPDiferenciais() {
               initial={{ opacity: 0, y: 16 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.55, delay: 0.05 + i * 0.09 }}
-              className="flex gap-6 md:gap-12 py-8"
+              className="flex gap-4 sm:gap-8 md:gap-12 py-6 sm:py-8"
               style={{ borderBottom: "1px solid rgba(255,255,255,0.05)" }}
             >
-              {/* Oversized number */}
+              {/* Number */}
               <span
-                className="shrink-0 font-bold leading-none select-none hidden sm:block"
+                className="shrink-0 font-bold leading-none select-none"
                 style={{
                   fontFamily: "Sora, sans-serif",
-                  fontSize: "clamp(3rem, 6vw, 5rem)",
+                  fontSize: "clamp(2rem, 5vw, 5rem)",
                   color: item.accent ? "rgba(6,249,250,0.18)" : "rgba(255,255,255,0.05)",
                   lineHeight: 1,
-                  marginTop: "-0.1em",
-                  width: "3.5rem",
+                  marginTop: "-0.05em",
+                  width: "2.8rem",
                   textAlign: "right",
                 }}
               >
                 {item.num}
               </span>
 
-              <div className="flex-1">
+              <div className="flex-1 min-w-0">
                 <h3
-                  className="font-bold leading-snug mb-3"
+                  className="font-bold leading-snug mb-2 sm:mb-3"
                   style={{
                     fontFamily: "Sora, sans-serif",
-                    fontSize: "clamp(1.05rem, 2.5vw, 1.3rem)",
+                    fontSize: "clamp(0.95rem, 2.5vw, 1.3rem)",
                     color: item.accent ? "#06F9FA" : "#fff",
                   }}
                 >
                   {item.title}
                 </h3>
-                <p className="text-[#D9D9D9]/55 text-sm leading-relaxed max-w-[56ch]">
+                <p className="text-[#D9D9D9]/55 text-sm leading-relaxed">
                   {item.body}
                 </p>
               </div>
@@ -129,11 +129,11 @@ export function LPDiferenciais() {
           initial={{ opacity: 0, y: 16 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.55 }}
-          className="flex justify-start mt-10"
+          className="mt-8 sm:mt-10"
         >
           <a
             href="#inscricao"
-            className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full font-bold text-sm transition-all duration-200 hover:scale-[1.03]"
+            className="inline-flex items-center justify-center gap-2.5 w-full sm:w-auto px-7 py-4 rounded-full font-bold text-sm transition-all duration-200 hover:scale-[1.03]"
             style={{ background: "#06F9FA", color: "#0c1828" }}
             onMouseEnter={(e) => {
               (e.currentTarget as HTMLAnchorElement).style.boxShadow =

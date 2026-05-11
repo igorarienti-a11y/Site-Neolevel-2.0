@@ -140,7 +140,7 @@ export function LPForm() {
   return (
     <section
       id="inscricao"
-      className="py-16 md:py-28 px-4 sm:px-6 relative overflow-hidden"
+      className="py-14 md:py-28 px-4 sm:px-6 relative overflow-hidden"
       style={{ background: "#060d17" }}
     >
       <div
@@ -153,7 +153,7 @@ export function LPForm() {
       />
 
       <div className="max-w-5xl mx-auto" ref={ref}>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
 
           {/* Left — urgency copy */}
           <motion.div
@@ -170,19 +170,19 @@ export function LPForm() {
             </span>
 
             <h2
-              className="font-bold text-white leading-[1.1] mb-6"
-              style={{ fontFamily: "Sora, sans-serif", fontSize: "clamp(2rem, 4vw, 3rem)" }}
+              className="font-bold text-white leading-[1.1] mb-5"
+              style={{ fontFamily: "Sora, sans-serif", fontSize: "clamp(1.8rem, 5vw, 3rem)" }}
             >
               Garanta sua vaga
               <br />
               <span style={{ color: "#06F9FA" }}>na Turma 2026.</span>
             </h2>
 
-            <p className="text-[#D9D9D9]/55 text-sm leading-relaxed mb-8 max-w-[40ch]">
+            <p className="text-[#D9D9D9]/55 text-sm leading-relaxed mb-7 max-w-[40ch]">
               São <strong className="text-white/80">25 vagas por turma</strong> — e a seleção para 2026 está aberta agora. Preencha o formulário e nossa equipe entra em contato em até 24h.
             </p>
 
-            <div className="flex flex-col gap-4 mb-8">
+            <div className="flex flex-col gap-3.5 mb-7">
               {[
                 { icon: Users, text: "Turma limitada a 25 jovens por ano" },
                 { icon: Clock, text: "Resposta em até 24h úteis" },
@@ -221,7 +221,7 @@ export function LPForm() {
             transition={{ duration: 0.7, delay: 0.12 }}
           >
             <div
-              className="rounded-2xl p-6 sm:p-8"
+              className="rounded-2xl p-5 sm:p-8"
               style={{
                 background: "rgba(255,255,255,0.025)",
                 border: "1px solid rgba(6,249,250,0.1)",
@@ -249,7 +249,7 @@ export function LPForm() {
                   </p>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+                <form onSubmit={handleSubmit} className="flex flex-col gap-4 sm:gap-5">
                   <div>
                     <label className={labelClass}>
                       Nome completo <span style={{ color: "#06F9FA" }}>*</span>
@@ -264,7 +264,7 @@ export function LPForm() {
                     />
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
                     <div>
                       <label className={labelClass}>
                         E-mail <span style={{ color: "#06F9FA" }}>*</span>
@@ -293,7 +293,7 @@ export function LPForm() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
                     <div>
                       <label className={labelClass}>
                         WhatsApp <span style={{ color: "#06F9FA" }}>*</span>
@@ -392,7 +392,6 @@ export function LPForm() {
         </div>
       </div>
 
-      {/* Mini footer */}
       <p className="text-center text-[11px] text-[#D9D9D9]/20 mt-14">
         © {new Date().getFullYear()} Neolevel Business School · Programa com chancela FIESC
       </p>
