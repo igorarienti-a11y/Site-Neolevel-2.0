@@ -124,6 +124,12 @@ export function InscricaoSection() {
         (window as any).fbq("track", "Lead", {}, { eventID: browser.event_id });
       }
 
+      // GTM dataLayer — conversão de formulário
+      if (typeof window !== "undefined") {
+        (window as any).dataLayer = (window as any).dataLayer || [];
+        (window as any).dataLayer.push({ event: "send_form" });
+      }
+
       setSent(true);
     } catch (err: any) {
       setError(err.message || "Erro ao enviar. Tente novamente.");
