@@ -107,6 +107,44 @@ function formatPhone(raw) {
   return '+55' + d;
 }
 
+async function sendMetaPageView(d, geo, ip) {
+  const pixelId = process.env.META_PIXEL_ID;
+  const token   = process.env.META_ACCESS_TOKEN;
+  if (!pixelId || !token) return;
+
+  const [country, st, zp] = await Promise.all([
+    sha256('br'),
+    geo.region_code ? sha256(geo.region_code.toLowerCase().slice(0, 2)) : Promise.resolve(''),
+    geo.postal ? sha256(geo.postal.replace(/\D/g, '').substring(0, 8))  : Promise.resolve(''),
+  ]);
+
+  const userData = {
+    client_ip_address: ip,
+    client_user_agent: d.user_agent || '',
+    country,
+  };
+  if (d.fbp) userData.fbp = d.fbp;
+  if (d.fbc) userData.fbc = d.fbc;
+  if (st) userData.st = st;
+  if (zp) userData.zp = zp;
+
+  const payload = {
+    data: [{
+      event_name:       'PageView',
+      event_time:       Math.floor(Date.now() / 1000),
+      action_source:    'website',
+      event_source_url: d.page_url || '',
+      user_data:        userData,
+    }],
+  };
+
+  await fetch(`https://graph.facebook.com/${META_API_VER}/${pixelId}/events?access_token=${token}`, {
+    method:  'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body:    JSON.stringify(payload),
+  });
+}
+
 async function sendMetaLead(d, geo, ip) {
   const pixelId = process.env.META_PIXEL_ID;
   const token   = process.env.META_ACCESS_TOKEN;
@@ -308,7 +346,9 @@ export async function POST(req) {
       throw new Error(`SHEETS_FAIL(${res.status}): ${JSON.stringify(err)}`);
     }
 
-    if (d.type !== 'pageview') {
+    if (d.type === 'pageview') {
+      sendMetaPageView(d, geo, ip).catch(() => {});
+    } else {
       sendMetaLead(d, geo, ip).catch(() => {});
     }
 
