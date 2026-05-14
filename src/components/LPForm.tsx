@@ -314,8 +314,7 @@ export function LPForm() {
                       <input
                         type="number"
                         required
-                        min={17}
-                        max={30}
+                        min={1}
                         placeholder="Ex: 22"
                         className={inputClass}
                         value={idade}
