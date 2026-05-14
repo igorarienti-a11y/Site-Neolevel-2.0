@@ -27,20 +27,24 @@ function generateEventId(): string {
 function getUtms(): Record<string, string> {
   const params = new URLSearchParams(window.location.search);
   const keys = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"];
-  const utms: Record<string, string> = {};
-  keys.forEach((k) => { if (params.get(k)) utms[k] = params.get(k)!; });
-  if (Object.keys(utms).length) sessionStorage.setItem("_utms", JSON.stringify(utms));
-  const stored = sessionStorage.getItem("_utms");
-  return stored ? JSON.parse(stored) : {};
+  const current: Record<string, string> = {};
+  keys.forEach((k) => { if (params.get(k)) current[k] = params.get(k)!; });
+  // first-touch: só grava se ainda não tem UTMs salvos
+  const stored = localStorage.getItem("_utms");
+  if (!stored && Object.keys(current).length) {
+    localStorage.setItem("_utms", JSON.stringify(current));
+  }
+  return stored ? JSON.parse(stored) : current;
 }
 
 function getClickIds(): Record<string, string> {
   const params = new URLSearchParams(window.location.search);
   const clickKeys = ["fbclid", "gclid", "ttclid", "msclkid", "gbraid", "wbraid"];
-  const ids: Record<string, string> = {};
-  clickKeys.forEach((k) => { if (params.get(k)) ids[k] = params.get(k)!; });
-  if (Object.keys(ids).length) sessionStorage.setItem("_clickids", JSON.stringify(ids));
-  const stored = sessionStorage.getItem("_clickids");
+  const current: Record<string, string> = {};
+  clickKeys.forEach((k) => { if (params.get(k)) current[k] = params.get(k)!; });
+  // last-touch: sempre atualiza com o clique mais recente
+  if (Object.keys(current).length) localStorage.setItem("_clickids", JSON.stringify(current));
+  const stored = localStorage.getItem("_clickids");
   return stored ? JSON.parse(stored) : {};
 }
 

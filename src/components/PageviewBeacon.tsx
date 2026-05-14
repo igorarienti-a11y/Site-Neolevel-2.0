@@ -9,15 +9,19 @@ export function PageviewBeacon() {
       const utmKeys = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"];
       const clickKeys = ["fbclid", "gclid", "ttclid", "msclkid", "gbraid", "wbraid"];
 
-      const utms: Record<string, string> = {};
-      utmKeys.forEach((k) => { if (params.get(k)) utms[k] = params.get(k)!; });
-      if (Object.keys(utms).length) sessionStorage.setItem("_utms", JSON.stringify(utms));
-      const storedUtms = sessionStorage.getItem("_utms");
+      const current: Record<string, string> = {};
+      utmKeys.forEach((k) => { if (params.get(k)) current[k] = params.get(k)!; });
+      // first-touch: só grava se ainda não tem UTMs salvos
+      const storedUtms = localStorage.getItem("_utms");
+      if (!storedUtms && Object.keys(current).length) {
+        localStorage.setItem("_utms", JSON.stringify(current));
+      }
 
       const ids: Record<string, string> = {};
       clickKeys.forEach((k) => { if (params.get(k)) ids[k] = params.get(k)!; });
-      if (Object.keys(ids).length) sessionStorage.setItem("_clickids", JSON.stringify(ids));
-      const storedIds = sessionStorage.getItem("_clickids");
+      // last-touch: sempre atualiza com o clique mais recente
+      if (Object.keys(ids).length) localStorage.setItem("_clickids", JSON.stringify(ids));
+      const storedIds = localStorage.getItem("_clickids");
 
       const getCookie = (name: string) => {
         const match = document.cookie.match(new RegExp("(^| )" + name + "=([^;]+)"));
@@ -37,7 +41,7 @@ export function PageviewBeacon() {
           user_agent: navigator.userAgent,
           fbp: getCookie("_fbp"),
           fbc: getCookie("_fbc"),
-          utms: storedUtms ? JSON.parse(storedUtms) : {},
+          utms: storedUtms ? JSON.parse(storedUtms) : (Object.keys(current).length ? current : {}),
           ...(storedIds ? JSON.parse(storedIds) : {}),
         }),
       }).catch(() => {});
