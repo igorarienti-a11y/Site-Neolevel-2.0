@@ -122,6 +122,22 @@ export function LPFAQ() {
           </h2>
         </motion.div>
 
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.15 }}
+          className="mb-10 rounded-xl overflow-hidden"
+          style={{ aspectRatio: "16/9", background: "rgba(0,0,0,0.3)" }}
+        >
+          <iframe
+            src="https://www.youtube.com/embed/pOw5la4MdDs"
+            title="Neolevel"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            className="w-full h-full"
+          />
+        </motion.div>
+
         <div style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
           {faqs.map((faq, i) => (
             <FaqItem key={faq.q} q={faq.q} a={faq.a} index={i} />
